@@ -22,7 +22,9 @@ public class landing_page extends javax.swing.JFrame
     {
         initComponents();
     }
-
+    
+    String ssid_name;
+    String ssid_pass;
 		
 	
 	
@@ -35,21 +37,24 @@ public class landing_page extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         pass_field = new javax.swing.JPasswordField();
         ssid_field = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        wlan_start = new javax.swing.JButton();
-        ssid_pass_checkbox = new javax.swing.JCheckBox();
-        wlan_stop = new javax.swing.JButton();
-        wlan_restart = new javax.swing.JButton();
-        wlan_reset = new javax.swing.JButton();
+        start_btn = new javax.swing.JButton();
+        pass_checkbox = new javax.swing.JCheckBox();
+        stop_btn = new javax.swing.JButton();
+        restart_btn = new javax.swing.JButton();
+        reset_btn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         status_field = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
-        clear_ssid_field = new javax.swing.JButton();
-        clear_ssid_pass = new javax.swing.JButton();
+        ssid_clr_btn = new javax.swing.JButton();
+        pass_clr_btn = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WLAN Utility");
@@ -62,6 +67,7 @@ public class landing_page extends javax.swing.JFrame
 
         pass_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         pass_field.setToolTipText("Enter password here, must be greater than 8 characters");
+        pass_field.setEnabled(false);
         pass_field.setPreferredSize(new java.awt.Dimension(56, 20));
         pass_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,68 +89,70 @@ public class landing_page extends javax.swing.JFrame
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Password");
 
-        wlan_start.setText("START");
-        wlan_start.setToolTipText("Wireless Hotspot will started with entered credentials");
-        wlan_start.setBorder(null);
-        wlan_start.setBorderPainted(false);
-        wlan_start.setPreferredSize(new java.awt.Dimension(77, 23));
-        wlan_start.addActionListener(new java.awt.event.ActionListener() {
+        start_btn.setText("START");
+        start_btn.setToolTipText("Wireless Hotspot will started with entered credentials");
+        start_btn.setBorder(null);
+        start_btn.setBorderPainted(false);
+        start_btn.setPreferredSize(new java.awt.Dimension(77, 23));
+        start_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wlan_startActionPerformed(evt);
+                start_btnActionPerformed(evt);
             }
         });
 
-        ssid_pass_checkbox.setText("Use Password");
-        ssid_pass_checkbox.setPreferredSize(new java.awt.Dimension(93, 21));
-        ssid_pass_checkbox.addActionListener(new java.awt.event.ActionListener() {
+        pass_checkbox.setText("Use Password");
+        pass_checkbox.setPreferredSize(new java.awt.Dimension(93, 21));
+        pass_checkbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ssid_pass_checkboxActionPerformed(evt);
+                pass_checkboxActionPerformed(evt);
             }
         });
 
-        wlan_stop.setText("STOP");
-        wlan_stop.setToolTipText("Hotspot will be terminated");
-        wlan_stop.setBorderPainted(false);
-        wlan_stop.setPreferredSize(new java.awt.Dimension(77, 23));
-        wlan_stop.addActionListener(new java.awt.event.ActionListener() {
+        stop_btn.setText("STOP");
+        stop_btn.setToolTipText("Hotspot will be terminated");
+        stop_btn.setBorderPainted(false);
+        stop_btn.setPreferredSize(new java.awt.Dimension(77, 23));
+        stop_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wlan_stopActionPerformed(evt);
+                stop_btnActionPerformed(evt);
             }
         });
 
-        wlan_restart.setText("RESTART");
-        wlan_restart.setToolTipText("Hotspot will be stopped and then restarted");
-        wlan_restart.setBorderPainted(false);
+        restart_btn.setText("RESTART");
+        restart_btn.setToolTipText("Hotspot will be stopped and then restarted");
+        restart_btn.setBorderPainted(false);
 
-        wlan_reset.setText("RESET");
-        wlan_reset.setToolTipText("Hotspot will terminated and gets deleted (needs new credentials)");
-        wlan_reset.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        wlan_reset.setBorderPainted(false);
-        wlan_reset.setPreferredSize(new java.awt.Dimension(77, 23));
-        wlan_reset.addActionListener(new java.awt.event.ActionListener() {
+        reset_btn.setText("RESET");
+        reset_btn.setToolTipText("Hotspot will terminated and gets deleted (needs new credentials)");
+        reset_btn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reset_btn.setBorderPainted(false);
+        reset_btn.setPreferredSize(new java.awt.Dimension(77, 23));
+        reset_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wlan_resetActionPerformed(evt);
+                reset_btnActionPerformed(evt);
             }
         });
 
         status_field.setEditable(false);
-        status_field.setColumns(20);
-        status_field.setRows(5);
+        status_field.setColumns(10);
+        status_field.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        status_field.setRows(100);
         jScrollPane1.setViewportView(status_field);
 
-        clear_ssid_field.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        clear_ssid_field.setText("Clear");
-        clear_ssid_field.addActionListener(new java.awt.event.ActionListener() {
+        ssid_clr_btn.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        ssid_clr_btn.setText("Clear");
+        ssid_clr_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clear_ssid_fieldActionPerformed(evt);
+                ssid_clr_btnActionPerformed(evt);
             }
         });
 
-        clear_ssid_pass.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        clear_ssid_pass.setText("Clear");
-        clear_ssid_pass.addActionListener(new java.awt.event.ActionListener() {
+        pass_clr_btn.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        pass_clr_btn.setText("Clear");
+        pass_clr_btn.setEnabled(false);
+        pass_clr_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clear_ssid_passActionPerformed(evt);
+                pass_clr_btnActionPerformed(evt);
             }
         });
 
@@ -170,12 +178,12 @@ public class landing_page extends javax.swing.JFrame
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(clear_ssid_field)
+                                    .addComponent(ssid_clr_btn)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(ssid_pass_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(pass_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(clear_ssid_pass))
+                                            .addComponent(pass_clr_btn))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel3)
                                             .addGap(18, 18, 18)
@@ -184,10 +192,10 @@ public class landing_page extends javax.swing.JFrame
                                                 .addComponent(ssid_field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(wlan_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(wlan_stop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(wlan_restart)
-                                    .addComponent(wlan_reset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(start_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(stop_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(restart_btn)
+                                    .addComponent(reset_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane1))))
                 .addGap(17, 17, 17))
         );
@@ -205,7 +213,7 @@ public class landing_page extends javax.swing.JFrame
                             .addComponent(ssid_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(7, 7, 7)
-                        .addComponent(clear_ssid_field)
+                        .addComponent(ssid_clr_btn)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(7, 7, 7)
@@ -215,18 +223,18 @@ public class landing_page extends javax.swing.JFrame
                                         .addComponent(jLabel3))
                                     .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(7, 7, 7)
-                                .addComponent(clear_ssid_pass))
+                                .addComponent(pass_clr_btn))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                                .addComponent(ssid_pass_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(pass_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(wlan_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(start_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
-                        .addComponent(wlan_stop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(stop_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
-                        .addComponent(wlan_restart)
+                        .addComponent(restart_btn)
                         .addGap(11, 11, 11)
-                        .addComponent(wlan_reset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(reset_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
@@ -235,38 +243,76 @@ public class landing_page extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ssid_pass_checkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_pass_checkboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ssid_pass_checkboxActionPerformed
+    private void pass_checkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass_checkboxActionPerformed
+        if (pass_checkbox.isSelected())
+        {
+            pass_field.setEnabled(true);
+            pass_clr_btn.setEnabled(true);
+        }
+        else
+        {
+            pass_field.setEnabled(false);
+            pass_clr_btn.setEnabled(false);
+        }
+    }//GEN-LAST:event_pass_checkboxActionPerformed
 
     private void pass_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pass_fieldActionPerformed
 
-    private void wlan_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wlan_startActionPerformed
+    private void start_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_btnActionPerformed
+        ssid_name  = ssid_field.getText();
+        ssid_pass = new String(pass_field.getPassword());
+          
+        if(ssid_name.isEmpty())
+        {
+            status_field.setText("Enter SSID name...");
+            ssid_name  = ssid_field.getText();
+                
+               if(pass_checkbox.isSelected())
+               {
+                 if(ssid_pass.isEmpty() && ssid_name.isEmpty())
+                    {
+                     status_field.setText("Please Enter SSID name\nPlease enter Password");
+                     ssid_name  = ssid_field.getText();
+                     ssid_pass = new String(pass_field.getPassword());
+                    }
+               }
+        }
+        
+        else if(pass_checkbox.isSelected())
+            {
+                if(ssid_pass.isEmpty())
+                    {
+                     status_field.setText("\nPlease enter Password");
+                     ssid_pass = new String(pass_field.getPassword());
+                    }
+            }
+        
+        //your driver code for runtime goes here.......
+    }//GEN-LAST:event_start_btnActionPerformed
+
+    private void reset_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_btnActionPerformed
+       status_field.setText("");
+       ssid_field.setText("");
+       pass_field.setText("");
+    }//GEN-LAST:event_reset_btnActionPerformed
+
+    private void stop_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stop_btnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_wlan_startActionPerformed
+    }//GEN-LAST:event_stop_btnActionPerformed
 
-    private void wlan_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wlan_resetActionPerformed
-        //String temp = new String(pass_field.getPassword());
-        //status_field.setText(temp);
-    }//GEN-LAST:event_wlan_resetActionPerformed
-
-    private void wlan_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wlan_stopActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_wlan_stopActionPerformed
-
-    private void clear_ssid_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_ssid_fieldActionPerformed
+    private void ssid_clr_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_clr_btnActionPerformed
         ssid_field.setText("");   //will clear the ssid field
-    }//GEN-LAST:event_clear_ssid_fieldActionPerformed
+    }//GEN-LAST:event_ssid_clr_btnActionPerformed
 
     private void ssid_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ssid_fieldActionPerformed
 
-    private void clear_ssid_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_ssid_passActionPerformed
+    private void pass_clr_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass_clr_btnActionPerformed
        pass_field.setText("");    //will clear the password field
-    }//GEN-LAST:event_clear_ssid_passActionPerformed
+    }//GEN-LAST:event_pass_clr_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,7 +325,7 @@ public class landing_page extends javax.swing.JFrame
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if("Windows".equals(info.getName()))
+                if("Windows Classic".equals(info.getName()))
                 {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
@@ -301,20 +347,21 @@ public class landing_page extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton clear_ssid_field;
-    private javax.swing.JButton clear_ssid_pass;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JCheckBox pass_checkbox;
+    private javax.swing.JButton pass_clr_btn;
     private javax.swing.JPasswordField pass_field;
+    private javax.swing.JButton reset_btn;
+    private javax.swing.JButton restart_btn;
+    private javax.swing.JButton ssid_clr_btn;
     private javax.swing.JTextField ssid_field;
-    private javax.swing.JCheckBox ssid_pass_checkbox;
+    private javax.swing.JButton start_btn;
     private javax.swing.JTextArea status_field;
-    private javax.swing.JButton wlan_reset;
-    private javax.swing.JButton wlan_restart;
-    private javax.swing.JButton wlan_start;
-    private javax.swing.JButton wlan_stop;
+    private javax.swing.JButton stop_btn;
     // End of variables declaration//GEN-END:variables
 }
