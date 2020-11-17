@@ -1,3 +1,7 @@
+package wlan.utility;
+
+import javax.swing.UnsupportedLookAndFeelException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,15 +12,20 @@
  *
  * @author Neeraj
  */
-public class landing_page extends javax.swing.JFrame {
+public class landing_page extends javax.swing.JFrame 
+{
 
     /**
      * Creates new form landing_page
      */
-    public landing_page() {
+    public landing_page() 
+    {
         initComponents();
     }
 
+		
+	
+	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,10 +35,9 @@ public class landing_page extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jInternalFrame1 = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
-        ssid_pass = new javax.swing.JPasswordField();
-        ssid_name = new javax.swing.JTextField();
+        pass_field = new javax.swing.JPasswordField();
+        ssid_field = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         wlan_start = new javax.swing.JButton();
@@ -43,37 +51,31 @@ public class landing_page extends javax.swing.JFrame {
         clear_ssid_field = new javax.swing.JButton();
         clear_ssid_pass = new javax.swing.JButton();
 
-        jInternalFrame1.setVisible(true);
-
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WLAN Utility");
+        setBounds(new java.awt.Rectangle(450, 190, 12, 0));
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("WLAN Utility");
 
-        ssid_pass.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        ssid_pass.setToolTipText("Enter password here, must be greater than 8 characters");
-        ssid_pass.setPreferredSize(new java.awt.Dimension(56, 20));
-        ssid_pass.addActionListener(new java.awt.event.ActionListener() {
+        pass_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        pass_field.setToolTipText("Enter password here, must be greater than 8 characters");
+        pass_field.setPreferredSize(new java.awt.Dimension(56, 20));
+        pass_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ssid_passActionPerformed(evt);
+                pass_fieldActionPerformed(evt);
             }
         });
 
-        ssid_name.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        ssid_name.setToolTipText("Enter the name to display as a network name");
+        ssid_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        ssid_field.setToolTipText("Enter the name to display as a network name");
+        ssid_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ssid_fieldActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("SSID");
@@ -140,6 +142,11 @@ public class landing_page extends javax.swing.JFrame {
 
         clear_ssid_pass.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         clear_ssid_pass.setText("Clear");
+        clear_ssid_pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear_ssid_passActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,7 +163,7 @@ public class landing_page extends javax.swing.JFrame {
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -173,8 +180,8 @@ public class landing_page extends javax.swing.JFrame {
                                             .addComponent(jLabel3)
                                             .addGap(18, 18, 18)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(ssid_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(ssid_name, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(ssid_field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(17, 17, 17)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(wlan_start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,7 +202,7 @@ public class landing_page extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ssid_name, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ssid_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(7, 7, 7)
                         .addComponent(clear_ssid_field)
@@ -206,7 +213,7 @@ public class landing_page extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(jLabel3))
-                                    .addComponent(ssid_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(7, 7, 7)
                                 .addComponent(clear_ssid_pass))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -232,16 +239,17 @@ public class landing_page extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ssid_pass_checkboxActionPerformed
 
-    private void ssid_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_passActionPerformed
+    private void pass_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass_fieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ssid_passActionPerformed
+    }//GEN-LAST:event_pass_fieldActionPerformed
 
     private void wlan_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wlan_startActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_wlan_startActionPerformed
 
     private void wlan_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wlan_resetActionPerformed
-        // TODO add your handling code here:
+        //String temp = new String(pass_field.getPassword());
+        //status_field.setText(temp);
     }//GEN-LAST:event_wlan_resetActionPerformed
 
     private void wlan_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wlan_stopActionPerformed
@@ -249,8 +257,16 @@ public class landing_page extends javax.swing.JFrame {
     }//GEN-LAST:event_wlan_stopActionPerformed
 
     private void clear_ssid_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_ssid_fieldActionPerformed
-        // TODO add your handling code here:
+        ssid_field.setText("");   //will clear the ssid field
     }//GEN-LAST:event_clear_ssid_fieldActionPerformed
+
+    private void ssid_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ssid_fieldActionPerformed
+
+    private void clear_ssid_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear_ssid_passActionPerformed
+       pass_field.setText("");    //will clear the password field
+    }//GEN-LAST:event_clear_ssid_passActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,41 +279,37 @@ public class landing_page extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if("Windows".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                } 
+             
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(landing_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(landing_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(landing_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) 
+        {
             java.util.logging.Logger.getLogger(landing_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new landing_page().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new landing_page().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clear_ssid_field;
     private javax.swing.JButton clear_ssid_pass;
-    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField ssid_name;
-    private javax.swing.JPasswordField ssid_pass;
+    private javax.swing.JPasswordField pass_field;
+    private javax.swing.JTextField ssid_field;
     private javax.swing.JCheckBox ssid_pass_checkbox;
     private javax.swing.JTextArea status_field;
     private javax.swing.JButton wlan_reset;

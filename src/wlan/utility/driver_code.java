@@ -9,15 +9,6 @@ package wlan.utility;
  *
  * @author Neeraj
  */
-public class WLANUtility
-{
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) 
-    {
-        new landing_page().setVisible(true); //initializing the landing_page class here
-    }
+public class driver_code {
     
 }
