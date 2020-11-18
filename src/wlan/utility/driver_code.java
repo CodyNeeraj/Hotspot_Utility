@@ -56,6 +56,7 @@ public class driver_code extends landing_page
                 String line;
                 while ((line = reader.readLine()) != null)
                 {
+                    status_field.append(line);
                     System.out.println(line);
                 }
             }
@@ -63,7 +64,7 @@ public class driver_code extends landing_page
         
         catch (IOException e) 
         {
-            status_field.setText("");
+            
         }
    }
    
@@ -77,7 +78,7 @@ public class driver_code extends landing_page
             String line;
             while ((line = reader.readLine()) != null)
             {
-                System.out.println(line);
+                status_field.setText(line);
             }
         }
         } 
@@ -97,6 +98,7 @@ public class driver_code extends landing_page
             String line;
             while ((line = reader.readLine()) != null)
             {
+                status_field.setText(line);
                 System.out.println(line);
             }
         }
