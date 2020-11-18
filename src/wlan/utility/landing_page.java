@@ -1,5 +1,6 @@
 package wlan.utility;
 
+import java.awt.Color;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /*
@@ -133,10 +134,11 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        status_field.setEditable(false);
         status_field.setColumns(10);
         status_field.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        status_field.setLineWrap(true);
         status_field.setRows(100);
+        status_field.setToolTipText("Drag Useful info from here using Copy & Paste");
         jScrollPane1.setViewportView(status_field);
 
         ssid_clr_btn.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
@@ -263,6 +265,9 @@ public class landing_page extends javax.swing.JFrame
     private void start_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_btnActionPerformed
         ssid_name  = ssid_field.getText();
         ssid_pass = new String(pass_field.getPassword());
+        status_field.setForeground(Color.black);
+        status_field.setText(""); // fault happening at last phase of starting the wlan
+       // status_field.setText("Information filled sucessfully..");
           
         if(ssid_name.isEmpty())
         {
@@ -273,7 +278,8 @@ public class landing_page extends javax.swing.JFrame
                {
                  if(ssid_pass.isEmpty() && ssid_name.isEmpty())
                     {
-                     status_field.setText("Please Enter SSID name\nPlease enter Password");
+                     status_field.setForeground(Color.red);
+                     status_field.setText("Please Enter SSID name and Password..");
                      ssid_name  = ssid_field.getText();
                      ssid_pass = new String(pass_field.getPassword());
                     }
@@ -284,11 +290,17 @@ public class landing_page extends javax.swing.JFrame
             {
                 if(ssid_pass.isEmpty())
                     {
-                     status_field.setText("\nPlease enter Password");
+                     status_field.append("\nPlease enter Password");
+                     status_field.setForeground(Color.red);
                      ssid_pass = new String(pass_field.getPassword());
                     }
             }
-        
+        else
+        {
+            status_field.setForeground(Color.black);
+            status_field.setText("everything seems done..");
+        }
+       
         //your driver code for runtime goes here.......
     }//GEN-LAST:event_start_btnActionPerformed
 
@@ -304,6 +316,7 @@ public class landing_page extends javax.swing.JFrame
 
     private void ssid_clr_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_clr_btnActionPerformed
         ssid_field.setText("");   //will clear the ssid field
+        
     }//GEN-LAST:event_ssid_clr_btnActionPerformed
 
     private void ssid_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_fieldActionPerformed
@@ -325,7 +338,7 @@ public class landing_page extends javax.swing.JFrame
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if("Windows Classic".equals(info.getName()))
+                if("Windows".equals(info.getName()))
                 {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
@@ -361,7 +374,7 @@ public class landing_page extends javax.swing.JFrame
     private javax.swing.JButton ssid_clr_btn;
     private javax.swing.JTextField ssid_field;
     private javax.swing.JButton start_btn;
-    private javax.swing.JTextArea status_field;
+    public static javax.swing.JTextArea status_field;
     private javax.swing.JButton stop_btn;
     // End of variables declaration//GEN-END:variables
 }
