@@ -329,6 +329,9 @@
         <Property name="toolTipText" type="java.lang.String" value="Hotspot will be stopped and then restarted"/>
         <Property name="borderPainted" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="restart_btnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="reset_btn">
       <Properties>

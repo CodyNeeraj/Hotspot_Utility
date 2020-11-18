@@ -137,6 +137,11 @@ public class landing_page extends javax.swing.JFrame
         restart_btn.setText("RESTART");
         restart_btn.setToolTipText("Hotspot will be stopped and then restarted");
         restart_btn.setBorderPainted(false);
+        restart_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restart_btnActionPerformed(evt);
+            }
+        });
 
         reset_btn.setText("RESET");
         reset_btn.setToolTipText("Hotspot will terminated and gets deleted (needs new credentials)");
@@ -474,7 +479,7 @@ public class landing_page extends javax.swing.JFrame
       
         
             try {
-            Runtime.getRuntime().exec(new String[] {"cmd","/k","start","netsh", "wlan" ,"show" ,"drivers", "/k"});
+            Runtime.getRuntime().exec(new String[] {"cmd","/k","start","netsh", "wlan" ,"show" ,"drivers"});
             } catch (IOException ex) {
             Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -483,6 +488,14 @@ public class landing_page extends javax.swing.JFrame
              // String cmd = "cmd.exe /c start netsh wlan show drivers"; 
         
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void restart_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restart_btnActionPerformed
+       
+        //object of driver class
+        
+        driver_code restart = new driver_code();
+        restart.restart_func();
+    }//GEN-LAST:event_restart_btnActionPerformed
 
     /**
      * @param args the command line arguments

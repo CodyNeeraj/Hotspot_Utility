@@ -98,7 +98,7 @@ public class driver_code extends landing_page
             String line;
             while ((line = reader.readLine()) != null)
             {
-                status_field.setText(line);
+                status_field.append(line);
                 System.out.println(line);
             }
         }
