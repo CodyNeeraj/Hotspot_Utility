@@ -584,13 +584,8 @@ public class landing_page extends javax.swing.JFrame
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
       try
       {
-          
-          
-        Runtime.getRuntime().exec(new String[] {"cmd","/c","start","netsh", "wlan" ,"show" ,"drivers"});
-            
-            
-              
-          // can be used in this way JVM garbage collector is best in random objects
+       Runtime.getRuntime().exec(new String[] {"cmd","/c","start","netsh", "wlan" ,"show" ,"drivers"});
+        // can be used in this way JVM garbage collector is best in random objects
           // String cmd = "cmd.exe /c start netsh wlan show drivers"; 
         } 
       catch (IOException ex)
