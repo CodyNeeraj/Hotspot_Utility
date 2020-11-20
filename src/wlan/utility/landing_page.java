@@ -30,14 +30,15 @@ public class landing_page extends javax.swing.JFrame
         initComponents();
     }
     
+    //driver vars declararation
+    
     String ssid_name;
     String ssid_pass;
+    String start_cmd;
     String stop_cmd = "netsh wlan stop hostednetwork";
     String restart_cmd  = "netsh wlan stop hostednetwork && netsh wlan start hostednetwork";
-    String start_cmd;
-    
-    
-    
+    StringBuilder parsed_cmd = new StringBuilder();
+  
     public void stop_func()
    {
         try 
@@ -76,6 +77,9 @@ public class landing_page extends javax.swing.JFrame
    {
     try 
         {
+            ssid_field.setText("");
+            pass_field.setText("");
+            status_field.setText("");
             Process process = Runtime.getRuntime().exec(stop_cmd);
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
@@ -91,13 +95,16 @@ public class landing_page extends javax.swing.JFrame
     
      public void start_func()
    {
-       String predefined_cmd = "netsh wlan set hostednetwork mode=allow ssid=";
-       StringBuilder final_cmd = new StringBuilder();
-       final_cmd.append(predefined_cmd).append(ssid_name).append(" key=").append(ssid_pass);
-       start_cmd = final_cmd.toString();
+       parsed_cmd.append("netsh wlan set hostednetwork mode=allow ssid=")
+                 .append(ssid_name)
+                 .append(" key=")
+                 .append(ssid_pass)
+                 .append(" keyusage=temporary");
+       
+       start_cmd = parsed_cmd.toString();
         try 
         {
-            Process process = Runtime.getRuntime().exec(stop_cmd);
+            Process process = Runtime.getRuntime().exec("echo hui");
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
                 while((line = reader.readLine()) != null)
@@ -432,12 +439,13 @@ public class landing_page extends javax.swing.JFrame
     }//GEN-LAST:event_pass_fieldActionPerformed
 
     private void start_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_btnActionPerformed
+    ssid_name = ssid_field.getText();
     ssid_pass = new String(pass_field.getPassword());
     status_field.setForeground(Color.black);
     //status_field.setText("here am i"); // fault happening at last phase of starting the wlan
        // status_field.setText("Information filled sucessfully..");
        
-        if(ssid_field.getText().isEmpty())
+       /* if(ssid_field.getText().isEmpty())
         {
             status_field.setText("Enter SSID name...");
             ssid_name  = ssid_field.getText();
@@ -475,7 +483,7 @@ public class landing_page extends javax.swing.JFrame
             status_field.setForeground(Color.black);
             status_field.setText("everything seems done..");
             start_func();
-        }   
+        }   */
     }//GEN-LAST:event_start_btnActionPerformed
 
     private void reset_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_btnActionPerformed
