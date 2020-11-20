@@ -128,7 +128,7 @@ public class landing_page extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         start_btn = new javax.swing.JButton();
-        pass_checkbox = new javax.swing.JCheckBox();
+        showpass = new javax.swing.JCheckBox();
         stop_btn = new javax.swing.JButton();
         restart_btn = new javax.swing.JButton();
         reset_btn = new javax.swing.JButton();
@@ -161,7 +161,6 @@ public class landing_page extends javax.swing.JFrame
 
         pass_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         pass_field.setToolTipText("Enter password here, must be greater than 8 characters");
-        pass_field.setEnabled(false);
         pass_field.setPreferredSize(new java.awt.Dimension(56, 20));
         pass_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,11 +193,11 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        pass_checkbox.setText("Use Password");
-        pass_checkbox.setPreferredSize(new java.awt.Dimension(93, 21));
-        pass_checkbox.addActionListener(new java.awt.event.ActionListener() {
+        showpass.setText("Show password");
+        showpass.setPreferredSize(new java.awt.Dimension(93, 21));
+        showpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pass_checkboxActionPerformed(evt);
+                showpassActionPerformed(evt);
             }
         });
 
@@ -251,7 +250,6 @@ public class landing_page extends javax.swing.JFrame
 
         pass_clr_btn.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         pass_clr_btn.setText("Clear");
-        pass_clr_btn.setEnabled(false);
         pass_clr_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pass_clr_btnActionPerformed(evt);
@@ -351,8 +349,8 @@ public class landing_page extends javax.swing.JFrame
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(ssid_clr_btn)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(pass_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(showpass, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(pass_clr_btn))
                                 .addGroup(layout.createSequentialGroup()
@@ -409,7 +407,7 @@ public class landing_page extends javax.swing.JFrame
                         .addGap(11, 11, 11)
                         .addComponent(reset_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pass_checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(showpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -418,19 +416,16 @@ public class landing_page extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pass_checkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass_checkboxActionPerformed
-        if (pass_checkbox.isSelected())
+    private void showpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showpassActionPerformed
+        if (showpass.isSelected())
         {
-            pass_field.setEnabled(true);
-            pass_clr_btn.setEnabled(true);
+            pass_field.setEchoChar((char)0);
         }
         else
         {
-            ssid_pass = null;
-            pass_field.setEnabled(false);
-            pass_clr_btn.setEnabled(false);
+            pass_field.setEchoChar('*');
         }
-    }//GEN-LAST:event_pass_checkboxActionPerformed
+    }//GEN-LAST:event_showpassActionPerformed
 
     private void pass_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass_fieldActionPerformed
         // TODO add your handling code here:
@@ -447,7 +442,7 @@ public class landing_page extends javax.swing.JFrame
             status_field.setText("Enter SSID name...");
             ssid_name  = ssid_field.getText();
                 
-               if(pass_checkbox.isSelected())
+               if(showpass.isSelected())
                {
                  if(ssid_pass.isEmpty() && ssid_name.isEmpty())
                     {
@@ -460,12 +455,12 @@ public class landing_page extends javax.swing.JFrame
                }
         }
         
-        else if(!pass_checkbox.isSelected())
+        else if(!showpass.isSelected())
         {
             ssid_pass = "default (since not selected)";
         }
         
-        else if(pass_checkbox.isSelected())
+        else if(showpass.isSelected())
             {
                 if(ssid_pass.isEmpty())
                     {
@@ -652,11 +647,11 @@ public class landing_page extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JCheckBox pass_checkbox;
     private javax.swing.JButton pass_clr_btn;
     private javax.swing.JPasswordField pass_field;
     private javax.swing.JButton reset_btn;
     private javax.swing.JButton restart_btn;
+    private javax.swing.JCheckBox showpass;
     private javax.swing.JButton ssid_clr_btn;
     private javax.swing.JTextField ssid_field;
     private javax.swing.JButton start_btn;
