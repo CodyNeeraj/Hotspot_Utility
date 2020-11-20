@@ -129,7 +129,7 @@ public class landing_page extends javax.swing.JFrame
        set_config = parsed_cmd.toString();
        status_field.setText(set_config);
        System.out.println(set_config);
-        try 
+       /* try 
         {
             Runtime.getRuntime().exec(set_config); //will setup the specified config for hotspot
             Process process = Runtime.getRuntime().exec(start_cmd); // will then start the hotspot
@@ -141,9 +141,9 @@ public class landing_page extends javax.swing.JFrame
                     System.out.println(line);
                 }
                 
-        } 
+        }
         catch (IOException e) 
-        {}
+        */
    }
 	
 	
@@ -471,6 +471,7 @@ public class landing_page extends javax.swing.JFrame
     ssid_name = ssid_field.getText();
     ssid_pass = new String(pass_field.getPassword());
     status_field.setForeground(Color.black);
+            start_func();
     //status_field.setText("here am i"); // fault happening at last phase of starting the wlan
        // status_field.setText("Information filled sucessfully..");
        
