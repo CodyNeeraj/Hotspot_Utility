@@ -9,18 +9,37 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPopupMenu;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The MIT License
+ *
+ * Copyright 2020 Neeraj.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
 /**
  *
  * @author Neeraj
  */
-public class landing_page extends javax.swing.JFrame 
+public class landing_page extends javax.swing.JFrame
 {
     /**
      * Creates new form landing_page
@@ -30,11 +49,14 @@ public class landing_page extends javax.swing.JFrame
         initComponents();
     }
     
+    
+    
     //driver vars declararation
     
     String ssid_name;
     String ssid_pass;
-    String start_cmd;
+    String set_config;
+    String start_cmd = "netsh wlan start hostednetwork";
     String stop_cmd = "netsh wlan stop hostednetwork";
     String restart_cmd  = "netsh wlan stop hostednetwork && netsh wlan start hostednetwork";
     StringBuilder parsed_cmd = new StringBuilder();
@@ -48,7 +70,7 @@ public class landing_page extends javax.swing.JFrame
             String line;
                 while((line = reader.readLine()) != null)
                 {
-                    status_field.append(line);
+                    status_field.setText(line);
                     System.out.println(line);
                 }
          } 
@@ -95,16 +117,22 @@ public class landing_page extends javax.swing.JFrame
     
      public void start_func()
    {
+       ssid_name = ssid_field.getText();
+       ssid_pass = new String(pass_field.getPassword());
+       
        parsed_cmd.append("netsh wlan set hostednetwork mode=allow ssid=")
                  .append(ssid_name)
                  .append(" key=")
                  .append(ssid_pass)
                  .append(" keyusage=temporary");
        
-       start_cmd = parsed_cmd.toString();
+       set_config = parsed_cmd.toString();
+       status_field.setText(set_config);
+       System.out.println(set_config);
         try 
         {
-            Process process = Runtime.getRuntime().exec("echo hui");
+            Runtime.getRuntime().exec(set_config); //will setup the specified config for hotspot
+            Process process = Runtime.getRuntime().exec(start_cmd); // will then start the hotspot
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
                 while((line = reader.readLine()) != null)
@@ -112,9 +140,8 @@ public class landing_page extends javax.swing.JFrame
                     status_field.append(line);
                     System.out.println(line);
                 }
-                status_field.setText(start_cmd);
-                System.out.println(start_cmd);
-         } 
+                
+        } 
         catch (IOException e) 
         {}
    }
@@ -239,13 +266,14 @@ public class landing_page extends javax.swing.JFrame
         });
 
         status_field.setEditable(false);
-        status_field.setColumns(10);
         status_field.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         status_field.setRows(100);
+        status_field.setTabSize(2);
         status_field.setToolTipText("Drag Useful info from here using Copy & Paste");
         status_field.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         status_field.setDragEnabled(true);
         jScrollPane1.setViewportView(status_field);
+        status_field.setLineWrap(true);
 
         ssid_clr_btn.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         ssid_clr_btn.setText("Clear");
@@ -421,6 +449,7 @@ public class landing_page extends javax.swing.JFrame
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void showpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showpassActionPerformed
@@ -585,15 +614,60 @@ public class landing_page extends javax.swing.JFrame
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
       try
       {
-       Runtime.getRuntime().exec(new String[] {"cmd","/c","start","netsh", "wlan" ,"show" ,"drivers"});
-        // can be used in this way JVM garbage collector is best in random objects
-          // String cmd = "cmd.exe /c start netsh wlan show drivers"; 
-        } 
+       //Runtime.getRuntime().exec(new String[] {"cmd","/c","start","netsh", "wlan" ,"show" ,"drivers"});
+           
+         Process pr= Runtime.getRuntime().exec("netsh wlan show drivers");
+         BufferedReader reader = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+		
+                String line,para;
+                StringBuilder output = new StringBuilder();
+                while((line = reader.readLine()) != null) 
+                   {
+                       output.append(line);
+                   }               
+                para = output.toString();
+                new drivercheck_splashscreen(para).setVisible(true);
+                
+                reader.close();
+                 
+               if(para.length()>=55)
+                {
+                    status_field.setText("ahaa gal baaat");
+                }
+               else
+               {
+                   status_field.setText("ma chudao heni chlana taade system ch .......");
+               }
+      }
       catch (IOException ex)
-         {
+        {
             Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
         }
-           
+          /* try 
+	{
+		Process pr= Runtime.getRuntime().exec("netsh wlan show pro");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+		String line;
+		while((line = reader.readLine()) != null) 
+		{
+			System.out.println(line);
+		}
+		reader.close();
+		
+		//for error output on screen if command not executed succesfully
+		BufferedReader errorReader = new BufferedReader(new InputStreamReader(pr.getErrorStream()));
+		while ((line = errorReader.readLine()) != null)
+		{
+			System.out.println(line);
+		}
+		errorReader.close();
+ 
+	} 
+	catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}*/
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void restart_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restart_btnActionPerformed
@@ -617,7 +691,7 @@ public class landing_page extends javax.swing.JFrame
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -632,8 +706,10 @@ public class landing_page extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new landing_page().setVisible(true);
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new landing_page().setVisible(true);
+            }
         });
     }
 
@@ -656,14 +732,14 @@ public class landing_page extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton pass_clr_btn;
-    private javax.swing.JPasswordField pass_field;
+    public static javax.swing.JPasswordField pass_field;
     private javax.swing.JButton reset_btn;
     private javax.swing.JButton restart_btn;
     private javax.swing.JCheckBox showpass;
     private javax.swing.JButton ssid_clr_btn;
-    private javax.swing.JTextField ssid_field;
+    public static javax.swing.JTextField ssid_field;
     private javax.swing.JButton start_btn;
-    private javax.swing.JTextArea status_field;
+    public javax.swing.JTextArea status_field;
     private javax.swing.JButton stop_btn;
     // End of variables declaration//GEN-END:variables
 }
