@@ -9,7 +9,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPopupMenu;
 
 /*
  * The MIT License
@@ -53,13 +52,56 @@ public class landing_page extends javax.swing.JFrame
     
     //driver vars declararation
     
-    String ssid_name;
-    String ssid_pass;
-    String set_config;
+    String ssid_name; //storing ssid input here
+    String ssid_pass; //storing pass input here
+    String set_config; //end_cooked command (READY TO EXECUTE)
     String start_cmd = "netsh wlan start hostednetwork";
     String stop_cmd = "netsh wlan stop hostednetwork";
     String restart_cmd  = "netsh wlan stop hostednetwork && netsh wlan start hostednetwork";
-    StringBuilder parsed_cmd = new StringBuilder();
+    StringBuilder parsed_cmd = new StringBuilder(); 
+    //for appending the ssid & pass variables in about to/convert to String named set_config
+    
+    public void start_func() 
+   {
+       //getting inputs from client/user--->
+       ssid_name = ssid_field.getText();
+       ssid_pass = new String(pass_field.getPassword());
+       
+       //code parsing to make a usable command starts here --->
+       parsed_cmd.delete(0, parsed_cmd.length());  // will clear the buffer of Stringbuilder for next command enqueuing...
+       parsed_cmd.append("netsh wlan set hostednetwork mode=allow ssid=")
+                 .append(ssid_name)
+                 .append(" key=")
+                 .append(ssid_pass)
+                 .append(" keyusage=temporary");
+       
+       //converting StringBuilder to a new string -->
+       set_config = parsed_cmd.toString();
+       status_field.setText(set_config);
+       System.out.println(set_config);
+       
+      /* try
+        {
+           // WARNING ->> CODE FOR TESTING PURPOSE ONLY, DO NOT UNCOMMENT AND RUN SIMULTANEOUSLY WITH ABOVE CODE, MAY PRODUCE UNPREDICTABLE EFFECTS 
+           //Runtime.getRuntime().exec("netsh wlan set hostednetwork mode=allow ssid="+ssid_name+" key="+ssid_pass+" keyusage=temporary");
+           //illustrating string concatenation in Runtime.exec()
+                
+           Runtime.getRuntime().exec(set_config); //will setup the specified config for hotspot
+           Process process = Runtime.getRuntime().exec(start_cmd); // will then start the hotspot
+           BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+           String line;
+           while((line = reader.readLine()) != null)
+            {
+              status_field.append(line);
+              System.out.println(line);
+            }
+        } 
+        catch (IOException ex)
+        {
+            Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+          
+   }
   
     public void stop_func()
    {
@@ -115,36 +157,7 @@ public class landing_page extends javax.swing.JFrame
         {}
    }
     
-     public void start_func()
-   {
-       ssid_name = ssid_field.getText();
-       ssid_pass = new String(pass_field.getPassword());
-       
-       parsed_cmd.append("netsh wlan set hostednetwork mode=allow ssid=")
-                 .append(ssid_name)
-                 .append(" key=")
-                 .append(ssid_pass)
-                 .append(" keyusage=temporary");
-       
-       set_config = parsed_cmd.toString();
-       status_field.setText(set_config);
-       System.out.println(set_config);
-       /* try 
-        {
-            Runtime.getRuntime().exec(set_config); //will setup the specified config for hotspot
-            Process process = Runtime.getRuntime().exec(start_cmd); // will then start the hotspot
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-                while((line = reader.readLine()) != null)
-                {
-                    status_field.append(line);
-                    System.out.println(line);
-                }
-                
-        }
-        catch (IOException e) 
-        */
-   }
+     
 	
 	
     /**
@@ -468,8 +481,8 @@ public class landing_page extends javax.swing.JFrame
     }//GEN-LAST:event_pass_fieldActionPerformed
 
     private void start_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_btnActionPerformed
-    ssid_name = ssid_field.getText();
-    ssid_pass = new String(pass_field.getPassword());
+    //ssid_name = ssid_field.getText();
+    //ssid_pass = new String(pass_field.getPassword());
     status_field.setForeground(Color.black);
             start_func();
     //status_field.setText("here am i"); // fault happening at last phase of starting the wlan
@@ -691,9 +704,10 @@ public class landing_page extends javax.swing.JFrame
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) 
+            {
                 if("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
                     break;
                 }
             }
