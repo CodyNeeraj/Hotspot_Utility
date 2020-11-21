@@ -48,8 +48,7 @@ public class landing_page extends javax.swing.JFrame
     {
         initComponents();
     }
-    
-    
+     
     
     //driver vars declararation
     
@@ -57,11 +56,15 @@ public class landing_page extends javax.swing.JFrame
     String ssid_pass; //storing pass input here
     String set_config; //end_cooked command (READY TO EXECUTE)
     String start_cmd = "netsh wlan start hostednetwork";
-    String stop_cmd = "netsh wlan stop hostednetwork";
-    String restart_cmd  = "netsh wlan stop hostednetwork && netsh wlan start hostednetwork";
+    
+   /* String stop_cmd = "netsh wlan stop hostednetwork";
+    String restart_cmd  = "netsh wlan stop hostednetwork && netsh wlan start hostednetwork";*/
+    //above two vars are getting used by driver_funcs class 
+    
     StringBuilder parsed_cmd = new StringBuilder(); 
     //for appending the ssid & pass variables in about to/convert to String named set_config
-    
+
+   
     public void start_func() 
    {
        //getting inputs from client/user--->
@@ -78,18 +81,35 @@ public class landing_page extends javax.swing.JFrame
        
        //converting StringBuilder to a new string -->
        set_config = parsed_cmd.toString();
-       status_field.setText(set_config);
+       status_field.setText("Starting Access-Point with Credentials\nSSID=   "+ssid_name+"\n"+"Password= "+ssid_pass+"\n");
        System.out.println(set_config);
        
-      /* try
+       //checking user input for valid operation ---->
+       if(ssid_name.isEmpty() | ssid_pass.isEmpty())
+       {
+           status_field.setForeground(Color.red);
+           status_field.setText("SSID OR PASSWORD CAN'T BE LEFT EMPTY ...!");
+           ssid_name = ssid_field.getText();
+           ssid_pass = new String(pass_field.getPassword());
+       }
+       else if(ssid_pass.length()<=7 | ssid_pass.length()>=64)
+       {
+           status_field.setForeground(Color.red);
+           status_field.setText("PASSWOR MUST BE 8 TO 63 CHARACTERS LONG...!");
+           ssid_pass = new String(pass_field.getPassword());
+       }      
+       else
+       {
+        status_field.setForeground(Color.black);
+        try
         {
            // WARNING ->> CODE FOR TESTING PURPOSE ONLY, DO NOT UNCOMMENT AND RUN SIMULTANEOUSLY WITH ABOVE CODE, MAY PRODUCE UNPREDICTABLE EFFECTS 
            //Runtime.getRuntime().exec("netsh wlan set hostednetwork mode=allow ssid="+ssid_name+" key="+ssid_pass+" keyusage=temporary");
            //illustrating string concatenation in Runtime.exec()
                 
-           Runtime.getRuntime().exec(set_config); //will setup the specified config for hotspot
-           Process process = Runtime.getRuntime().exec(start_cmd); // will then start the hotspot
-           BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+          Process q =  Runtime.getRuntime().exec(set_config); //will setup the specified parsed config command for hotspot
+          // Process process = Runtime.getRuntime().exec(start_cmd); // will then turn on the hotspot
+           BufferedReader reader = new BufferedReader(new InputStreamReader(q.getInputStream()));
            String line;
            while((line = reader.readLine()) != null)
             {
@@ -97,14 +117,15 @@ public class landing_page extends javax.swing.JFrame
               System.out.println(line);
             }
         } 
-        catch (IOException ex)
+        catch (Exception ex)
         {
-            Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-          
-   }
+            System.out.println("Error Occured in start_func");
+            ex.printStackTrace();
+        }
+       }
+    }
   
-    public void stop_func()
+    /*public void stop_func()
    {
         try 
         {
@@ -156,7 +177,7 @@ public class landing_page extends javax.swing.JFrame
         } 
         catch (IOException e) 
         {}
-   }
+   }*/
     
      
 	
@@ -187,17 +208,20 @@ public class landing_page extends javax.swing.JFrame
         pass_clr_btn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        pre_check_menu = new javax.swing.JMenu();
+        check_driver_menu = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        developer_menu = new javax.swing.JMenuItem();
+        TOS_menu = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        feedback_menu = new javax.swing.JMenuItem();
+        about_menu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WLAN Utility");
@@ -308,29 +332,20 @@ public class landing_page extends javax.swing.JFrame
 
         jMenu1.setText("Commands");
 
-        jMenu5.setText("Pre-Checks");
+        pre_check_menu.setText("Pre-Checks");
 
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem9.setText("Check for Drivers");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        check_driver_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK));
+        check_driver_menu.setText("Check for Drivers");
+        check_driver_menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                check_driver_menuActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem9);
+        pre_check_menu.add(check_driver_menu);
 
-        jMenu1.add(jMenu5);
+        jMenu1.add(pre_check_menu);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Reset Everthing");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItem2.setText("How to ?");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,6 +353,32 @@ public class landing_page extends javax.swing.JFrame
             }
         });
         jMenu1.add(jMenuItem2);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Start wlan");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setText("Stop wlan");
+        jMenu1.add(jMenuItem6);
+
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem7.setText("Restart wlan");
+        jMenu1.add(jMenuItem7);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setText("Reset ");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("Exit");
@@ -352,40 +393,40 @@ public class landing_page extends javax.swing.JFrame
 
         jMenu2.setText("More");
 
-        jMenuItem6.setText("Usage");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        developer_menu.setText("Usage");
+        developer_menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                developer_menuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(developer_menu);
 
-        jMenuItem7.setText("Terms of Service");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        TOS_menu.setText("Terms of Service");
+        TOS_menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                TOS_menuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem7);
+        jMenu2.add(TOS_menu);
 
         jMenuItem5.setText("Developer");
         jMenu2.add(jMenuItem5);
 
-        jMenuItem1.setText("Feedback");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        feedback_menu.setText("Feedback");
+        feedback_menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                feedback_menuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(feedback_menu);
 
-        jMenuItem8.setText("About");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        about_menu.setText("About");
+        about_menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                about_menuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem8);
+        jMenu2.add(about_menu);
 
         jMenuBar1.add(jMenu2);
 
@@ -466,9 +507,9 @@ public class landing_page extends javax.swing.JFrame
                         .addComponent(reset_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -491,12 +532,10 @@ public class landing_page extends javax.swing.JFrame
     }//GEN-LAST:event_pass_fieldActionPerformed
 
     private void start_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_btnActionPerformed
-    //ssid_name = ssid_field.getText();
-    //ssid_pass = new String(pass_field.getPassword());
-    status_field.setForeground(Color.black);
+    
+            status_field.setForeground(Color.black);
             start_func();
-    //status_field.setText("here am i"); // fault happening at last phase of starting the wlan
-       // status_field.setText("Information filled sucessfully..");
+    
        
        /* if(ssid_field.getText().isEmpty())
         {
@@ -544,33 +583,14 @@ public class landing_page extends javax.swing.JFrame
        status_field.setText("");
        ssid_field.setText("");
        pass_field.setText("");
-       reset_func();  
+       new core_funcs().reset_func();
     }//GEN-LAST:event_reset_btnActionPerformed
 
     private void stop_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stop_btnActionPerformed
-       /*driver_code stop = new driver_code();
-       stop.stop_func();
-       // as the above class was there in version 1.0
-       
-        try 
-        {
-            Process process = Runtime.getRuntime().exec(stop_cmd);
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) 
-            {
-                String line;
-                while ((line = reader.readLine()) != null)
-                {
-                    status_field.setText(line);
-                    System.out.println(line);
-                }
-            }
-        } 
-       
-        catch (IOException e) 
-        {
-            
-        }     */
-       stop_func();
+     
+    new core_funcs().stop_func();
+    status_field.append("The hosted network stopped\n");
+     
     }//GEN-LAST:event_stop_btnActionPerformed
 
     private void ssid_clr_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_clr_btnActionPerformed
@@ -585,21 +605,21 @@ public class landing_page extends javax.swing.JFrame
        pass_field.setText("");    //will clear the password field
     }//GEN-LAST:event_pass_clr_btnActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void developer_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_developer_menuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_developer_menuActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void TOS_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TOS_menuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_TOS_menuActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void about_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_menuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_about_menuActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         String url = "https://github.com/CodyNeeraj/wlan-hotspot-for-windows";
@@ -635,7 +655,7 @@ public class landing_page extends javax.swing.JFrame
         */
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void check_driver_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_driver_menuActionPerformed
       try
       {
        //Runtime.getRuntime().exec(new String[] {"cmd","/c","start","netsh", "wlan" ,"show" ,"drivers"});
@@ -660,7 +680,7 @@ public class landing_page extends javax.swing.JFrame
                 }
                else
                {
-                   JOptionPane.showConfirmDialog(rootPane,"No Drivers Found..\nStill want to use without drivers ?..  ", "Error" , JOptionPane.OK_CANCEL_OPTION);
+                   JOptionPane.showConfirmDialog(rootPane,"No Drivers Found..\nStill want to use without drivers ?..  ", "Error" , JOptionPane.ERROR_MESSAGE , JOptionPane.YES_NO_CANCEL_OPTION );
                    
                }
       }
@@ -668,41 +688,22 @@ public class landing_page extends javax.swing.JFrame
         {
             Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
         }
-          /* try 
-	{
-		Process pr= Runtime.getRuntime().exec("netsh wlan show pro");
-		BufferedReader reader = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-		String line;
-		while((line = reader.readLine()) != null) 
-		{
-			System.out.println(line);
-		}
-		reader.close();
-		
-		//for error output on screen if command not executed succesfully
-		BufferedReader errorReader = new BufferedReader(new InputStreamReader(pr.getErrorStream()));
-		while ((line = errorReader.readLine()) != null)
-		{
-			System.out.println(line);
-		}
-		errorReader.close();
- 
-	} 
-	catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-	}*/
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+        
+	
+    }//GEN-LAST:event_check_driver_menuActionPerformed
 
     private void restart_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restart_btnActionPerformed
        
-       restart_func();
+       new core_funcs().restart_func();
     }//GEN-LAST:event_restart_btnActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void feedback_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedback_menuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_feedback_menuActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
@@ -744,12 +745,16 @@ public class landing_page extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem TOS_menu;
+    private javax.swing.JMenuItem about_menu;
+    private javax.swing.JMenuItem check_driver_menu;
+    private javax.swing.JMenuItem developer_menu;
+    private javax.swing.JMenuItem feedback_menu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -758,12 +763,11 @@ public class landing_page extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton pass_clr_btn;
     public static javax.swing.JPasswordField pass_field;
+    private javax.swing.JMenu pre_check_menu;
     private javax.swing.JButton reset_btn;
     private javax.swing.JButton restart_btn;
     private javax.swing.JCheckBox showpass;
