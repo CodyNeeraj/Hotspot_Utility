@@ -41,7 +41,7 @@ import javax.swing.JOptionPane;
 public class core_funcs 
 {
     public void stop_func()
-     {
+    {
           Object choice[] = {"Stop", "Cancel"};
           int selectedValue = JOptionPane.showOptionDialog
                 (
@@ -77,7 +77,7 @@ public class core_funcs
      }
 		
     public void restart_func()
-     {
+    {
          Object choice[] = {"Restart", "Cancel"};
          int selectedValue = JOptionPane.showOptionDialog
                 (
@@ -96,6 +96,11 @@ public class core_funcs
                  try 
                     {
                        Runtime.getRuntime().exec("netsh wlan stop hostednetwork");
+                       try {Thread.sleep(2000);}
+                       catch (InterruptedException ex)
+                       {
+                         System.out.println("Interrupted exception after turning off the wlan and before restarting it....");
+                       }
                        Process process = Runtime.getRuntime().exec("netsh wlan start hostednetwork");
                        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                        String line;
@@ -150,37 +155,54 @@ public class core_funcs
     }
      
     public void usage_policy()
-    {                                           
-        String url = "https://github.com/CodyNeeraj/wlan-hotspot-for-windows";
-        if (Desktop.isDesktopSupported()) 
-        {
-            Desktop desktop = Desktop.getDesktop();
-            try
-            {
-                desktop.browse(new URI(url));
-            } 
-            catch (IOException | URISyntaxException e) 
-            {
-                // TODO Auto-generated catch block
-            }
-        }
-        //for cross platform dependancy (if used other than in windows)
-        /*else
-        {
-            Runtime runtime = Runtime.getRuntime();
-            try 
-            {
-                runtime.exec("xdg-open " + url);
-            } 
-            catch (IOException e) 
-            {
-                // TODO Auto-generated catch block
+    {   
+         Object choice[] = {"Continue", "Cancel"};              
+         int selectedValue = JOptionPane.showOptionDialog
+                (
+                         null,
+                         "This will take you to the Developer's site ..!",
+                         "Confirm",
+                         JOptionPane.YES_NO_OPTION,
+                         JOptionPane.QUESTION_MESSAGE,
+                         null,
+                         choice,
+                         choice[0]
+                );
+         if (selectedValue == JOptionPane.YES_OPTION) 
+              {
+                    System.out.println("Browser is opened..");
+                    //program keeps running smoothly
+                    String url = "https://github.com/CodyNeeraj/wlan-hotspot-for-windows";
+                    if (Desktop.isDesktopSupported()) 
+                    {
+                        Desktop desktop = Desktop.getDesktop();
+                        try
+                        {
+                            desktop.browse(new URI(url));
+                        } 
+                        catch (IOException | URISyntaxException e) 
+                        {
+                            // TODO Auto-generated catch block
+                        }
+                    }
+                    //for cross platform dependancy (if used other than in windows)
+                    /*else
+                    {
+                        Runtime runtime = Runtime.getRuntime();
+                        try 
+                        {
+                            runtime.exec("xdg-open " + url);
+                        } 
+                        catch (IOException e) 
+                        {
+                            // TODO Auto-generated catch block
 
-            }
-        
-        //else block is for cross platform dependancy only
-        
-         */
+                        }
+
+                    //else block is for cross platform dependancy only
+
+                     */
+              }
     }    
     
     public void driver_check() 

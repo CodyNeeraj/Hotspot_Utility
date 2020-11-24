@@ -95,7 +95,13 @@ public class landing_page extends javax.swing.JFrame {
                 //Runtime.getRuntime().exec("netsh wlan set hostednetwork mode=allow ssid="+ssid_name+" key="+ssid_pass+" keyusage=temporary");
                 //illustrating string concatenation in Runtime.exec()
 
-                Process q = Runtime.getRuntime().exec(set_config); //will setup the specified parsed config command for hotspot
+                Process q = Runtime.getRuntime().exec(set_config);
+                try {Thread.sleep(1800);}
+                catch (InterruptedException ex)
+                {
+                    System.out.println("Interrupted exception after pushing the set_credential command and before the wlan and before starting it thereafter...");
+                }
+                //will setup the specified parsed config command for hotspot
                 // Process process = Runtime.getRuntime().exec(start_cmd); // will then turn on the hotspot
                 BufferedReader reader = new BufferedReader(new InputStreamReader(q.getInputStream()));
                 String line;
