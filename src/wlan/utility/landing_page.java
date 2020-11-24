@@ -25,19 +25,21 @@ import javax.swing.JOptionPane;
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 /**
  *
  * @author Neeraj
  */
-public class landing_page extends javax.swing.JFrame {
+public class landing_page extends javax.swing.JFrame
+{
 
     /**
      * Creates new form landing_page
      */
-    public landing_page() {
+    public landing_page ()
+    {
         initComponents();
     }
 
@@ -47,14 +49,15 @@ public class landing_page extends javax.swing.JFrame {
     String set_config; //end_cooked command (READY TO EXECUTE)
     String start_cmd = "netsh wlan start hostednetwork";
 
-    /* String stop_cmd = "netsh wlan stop hostednetwork";
-    String restart_cmd  = "netsh wlan stop hostednetwork && netsh wlan start hostednetwork";*/
-    //above two vars are getting used by driver_funcs class 
-    
+    /*
+     * String stop_cmd = "netsh wlan stop hostednetwork"; String restart_cmd =
+     * "netsh wlan stop hostednetwork && netsh wlan start hostednetwork";
+     */
+    //above two vars are getting used by driver_funcs class
     StringBuilder parsed_cmd = new StringBuilder();
     //for appending the ssid & pass variables in about to/convert to String named set_config
 
-    public void start_func() 
+    public void start_func ()
     {
         //getting inputs from client/user--->
         ssid_name = ssid_field.getText();
@@ -70,33 +73,36 @@ public class landing_page extends javax.swing.JFrame {
         //converting StringBuilder to a new string -->
         set_config = parsed_cmd.toString();
         status_field.setText("Starting Access-Point with Credentials\nSSID=   " + ssid_name + "\n" + "Password= " + ssid_pass + "\n");
-       System.out.println(set_config);
+        System.out.println(set_config);
 
         //checking user input for valid operation ---->
-        if (ssid_name.isEmpty() | ssid_pass.isEmpty()) 
+        if (ssid_name.isEmpty() | ssid_pass.isEmpty())
         {
             status_field.setForeground(Color.red);
             status_field.setText("SSID OR PASSWORD CAN'T BE LEFT EMPTY ...!\n");
             ssid_name = ssid_field.getText();
             ssid_pass = new String(pass_field.getPassword());
-        } 
+        }
         else if (ssid_pass.length() <= 7 | ssid_pass.length() >= 64)
         {
             status_field.setForeground(Color.red);
             status_field.setText("PASSWORD MUST BE 8 TO 63 CHARACTERS LONG...!\n");
             ssid_pass = new String(pass_field.getPassword());
-        } 
-        else 
+        }
+        else
         {
             status_field.setForeground(Color.black);
-            try 
+            try
             {
-                // WARNING ->> CODE FOR TESTING PURPOSE ONLY, DO NOT UNCOMMENT AND RUN SIMULTANEOUSLY WITH ABOVE CODE, MAY PRODUCE UNPREDICTABLE EFFECTS 
+                // WARNING ->> CODE FOR TESTING PURPOSE ONLY, DO NOT UNCOMMENT AND RUN SIMULTANEOUSLY WITH ABOVE CODE, MAY PRODUCE UNPREDICTABLE EFFECTS
                 //Runtime.getRuntime().exec("netsh wlan set hostednetwork mode=allow ssid="+ssid_name+" key="+ssid_pass+" keyusage=temporary");
                 //illustrating string concatenation in Runtime.exec()
 
                 Process q = Runtime.getRuntime().exec(set_config);
-                try {Thread.sleep(1800);}
+                try
+                {
+                    Thread.sleep(1800);
+                }
                 catch (InterruptedException ex)
                 {
                     System.out.println("Interrupted exception after pushing the set_credential command and before the wlan and before starting it thereafter...");
@@ -105,12 +111,12 @@ public class landing_page extends javax.swing.JFrame {
                 // Process process = Runtime.getRuntime().exec(start_cmd); // will then turn on the hotspot
                 BufferedReader reader = new BufferedReader(new InputStreamReader(q.getInputStream()));
                 String line;
-                while ((line = reader.readLine()) != null) 
+                while ((line = reader.readLine()) != null)
                 {
-                    status_field.append("\n"+line);
+                    status_field.append("\n" + line);
                     System.out.println(line);
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 System.out.println("Error Occured in start_func");
@@ -119,59 +125,29 @@ public class landing_page extends javax.swing.JFrame {
         }
     }
 
-    /*public void stop_func()
-   {
-        try 
-        {
-            Process process = Runtime.getRuntime().exec(stop_cmd);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-                while((line = reader.readLine()) != null)
-                {
-                    status_field.setText(line);
-                    System.out.println(line);
-                }
-         } 
-        catch (IOException e) 
-        {}
-   }
-		
-    public void restart_func()
-   {
-    try 
-        {
-           Process process = Runtime.getRuntime().exec(restart_cmd);
-           BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-           String line;
-           while ((line = reader.readLine()) != null)
-            {
-                status_field.setText(line);
-                System.out.println(line);
-            }
-         } 
-        catch (IOException e) 
-        {}
-   }
-    
-    public void reset_func()
-   {
-    try 
-        {
-            ssid_field.setText("");
-            pass_field.setText("");
-            status_field.setText("");
-            Process process = Runtime.getRuntime().exec(stop_cmd);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null)
-            {
-                status_field.append(line);
-                System.out.println(line);
-            }
-        } 
-        catch (IOException e) 
-        {}
-   }*/
+    /*
+     * public void stop_func() { try { Process process =
+     * Runtime.getRuntime().exec(stop_cmd); BufferedReader reader = new
+     * BufferedReader(new InputStreamReader(process.getInputStream())); String
+     * line; while((line = reader.readLine()) != null) {
+     * status_field.setText(line); System.out.println(line); } } catch
+     * (IOException e) {} }
+     *
+     * public void restart_func() { try { Process process =
+     * Runtime.getRuntime().exec(restart_cmd); BufferedReader reader = new
+     * BufferedReader(new InputStreamReader(process.getInputStream())); String
+     * line; while ((line = reader.readLine()) != null) {
+     * status_field.setText(line); System.out.println(line); } } catch
+     * (IOException e) {} }
+     *
+     * public void reset_func() { try { ssid_field.setText("");
+     * pass_field.setText(""); status_field.setText(""); Process process =
+     * Runtime.getRuntime().exec(stop_cmd); BufferedReader reader = new
+     * BufferedReader(new InputStreamReader(process.getInputStream())); String
+     * line; while ((line = reader.readLine()) != null) {
+     * status_field.append(line); System.out.println(line); } } catch
+     * (IOException e) {} }
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -522,9 +498,12 @@ public class landing_page extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void showpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showpassActionPerformed
-        if (showpass.isSelected()) {
-            pass_field.setEchoChar((char)0);
-        } else {
+        if (showpass.isSelected())
+        {
+            pass_field.setEchoChar((char) 0);
+        }
+        else
+        {
             pass_field.setEchoChar('*');
         }
     }//GEN-LAST:event_showpassActionPerformed
@@ -535,11 +514,11 @@ public class landing_page extends javax.swing.JFrame {
 
     private void start_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_btnActionPerformed
         status_field.setForeground(Color.black);
-        start_func();  
+        start_func();
     }//GEN-LAST:event_start_btnActionPerformed
 
     private void reset_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_btnActionPerformed
-        //resetting/clearing all fields 
+        //resetting/clearing all fields
         status_field.setForeground(Color.black);
         status_field.setText("");
         ssid_field.setText("");
@@ -554,7 +533,7 @@ public class landing_page extends javax.swing.JFrame {
     }//GEN-LAST:event_stop_btnActionPerformed
 
     private void ssid_clr_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_clr_btnActionPerformed
-        ssid_field.setText("");   //will clear the ssid field   
+        ssid_field.setText("");   //will clear the ssid field
     }//GEN-LAST:event_ssid_clr_btnActionPerformed
 
     private void ssid_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_fieldActionPerformed
@@ -574,28 +553,31 @@ public class landing_page extends javax.swing.JFrame {
     }//GEN-LAST:event_TOS_menuActionPerformed
 
     private void exit_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_menuActionPerformed
-         Object choice[] = {"Yes", "No"};
-                // Object defaultchoice = choice[0]; //can also be specified as an Object
-                int selectedValue = JOptionPane.showOptionDialog
-                (
-                        rootPane,
-                         "Sure to Exit ?",
-                         "Confirm",
-                         JOptionPane.YES_NO_CANCEL_OPTION,
-                         JOptionPane.QUESTION_MESSAGE,
-                         null,
-                         choice,
-                         choice[0]
-                );
-                
-                if(selectedValue == JOptionPane.YES_OPTION)
-                { 
-                     System.exit(0);
-                }
-                else if(selectedValue == JOptionPane.NO_OPTION)
+        Object choice[]
+                =
                 {
-                    System.out.println("Not exiting currently ...");               
-                }
+                    "Yes", "No"
+                };
+        // Object defaultchoice = choice[0]; //can also be specified as an Object
+        int selectedValue = JOptionPane.showOptionDialog(
+                rootPane,
+                "Sure to Exit ?",
+                "Confirm",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choice,
+                choice[0]
+        );
+
+        if (selectedValue == JOptionPane.YES_OPTION)
+        {
+            System.exit(0);
+        }
+        else if (selectedValue == JOptionPane.NO_OPTION)
+        {
+            System.out.println("Not exiting currently ...");
+        }
     }//GEN-LAST:event_exit_menuActionPerformed
 
     private void about_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_menuActionPerformed
@@ -618,11 +600,11 @@ public class landing_page extends javax.swing.JFrame {
     }//GEN-LAST:event_restart_btnActionPerformed
 
     private void reset_wlan_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_wlan_menuActionPerformed
-                   status_field.setForeground(Color.black);
-                   new core_funcs().reset_func();
-                   status_field.setText("");
-                   ssid_field.setText("");
-                   pass_field.setText("");                
+        status_field.setForeground(Color.black);
+        new core_funcs().reset_func();
+        status_field.setText("");
+        ssid_field.setText("");
+        pass_field.setText("");
     }//GEN-LAST:event_reset_wlan_menuActionPerformed
 
     private void feedback_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedback_menuActionPerformed
@@ -630,24 +612,27 @@ public class landing_page extends javax.swing.JFrame {
     }//GEN-LAST:event_feedback_menuActionPerformed
 
     private void start_wlan_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_wlan_menuActionPerformed
-                Object choice[] = {"Start", "Cancel"};
-                // Object defaultchoice = choice[0]; //can also be specified as an Object
-                int selectedValue = JOptionPane.showOptionDialog
-                (
-                        rootPane,
-                         "This action will start the hotspot",
-                         "Confirm",
-                         JOptionPane.YES_NO_CANCEL_OPTION,
-                         JOptionPane.QUESTION_MESSAGE,
-                         null,
-                         choice,
-                         choice[0]
-                );
-                
-                if(selectedValue == JOptionPane.YES_OPTION)
+        Object choice[]
+                =
                 {
-                    start_func();
-                }               
+                    "Start", "Cancel"
+                };
+        // Object defaultchoice = choice[0]; //can also be specified as an Object
+        int selectedValue = JOptionPane.showOptionDialog(
+                rootPane,
+                "This action will start the hotspot",
+                "Confirm",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choice,
+                choice[0]
+        );
+
+        if (selectedValue == JOptionPane.YES_OPTION)
+        {
+            start_func();
+        }
     }//GEN-LAST:event_start_wlan_menuActionPerformed
 
     private void restart_wlan_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restart_wlan_menuActionPerformed
@@ -665,20 +650,30 @@ public class landing_page extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+    public static void main (String args[])
+    {
+        /*
+         * Set the Nimbus look and feel
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-              if ("Windows".equals(info.getName())) {
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Windows".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
                     break;
-              }
+                }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        }
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(landing_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -686,9 +681,13 @@ public class landing_page extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        /*
+         * Create and display the form
+         */
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run ()
+            {
                 new landing_page().setVisible(true);
             }
         });

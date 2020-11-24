@@ -6,9 +6,10 @@ package wlan.utility;
  */
 public class WLANUtility
 {
-    public static void main(String[] args) 
+
+    public static void main (String[] args)
     {
         new landing_page().setVisible(true); //initializing the landing_page class here
     }
-    
+
 }
