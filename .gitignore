@@ -11,3 +11,4 @@ test/
 # all generated manifests
 manifest.mf
 
+/dist/

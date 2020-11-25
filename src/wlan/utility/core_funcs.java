@@ -108,13 +108,15 @@ public class core_funcs
                 {
                     System.out.println("Interrupted exception after turning off the wlan and before restarting it....");
                 }
-                Process process = Runtime.getRuntime().exec("netsh wlan start hostednetwork");
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line;
-                while ((line = reader.readLine()) != null)
-                {
-                    System.out.println(line);
+                /*
+                 * Process process = Runtime.getRuntime().exec("netsh wlan start
+                 * hostednetwork"); BufferedReader reader = new
+                 * BufferedReader(new
+                 * InputStreamReader(process.getInputStream())); String line;
+                 * while ((line = reader.readLine()) != null) {
+                 * System.out.println(line);
                 }
+                 */
             }
             catch (Exception e)
             {
@@ -278,6 +280,35 @@ public class core_funcs
             Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void exit_code ()
+    {
+        Object choice[]
+                =
+                {
+                    "Yes", "No"
+                };
+        // Object defaultchoice = choice[0]; //can also be specified as an Object
+        int selectedValue = JOptionPane.showOptionDialog(
+                null,
+                "Sure to Exit ?",
+                "Confirm",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choice,
+                choice[0]
+        );
+
+        if (selectedValue == JOptionPane.YES_OPTION)
+        {
+            System.exit(0);
+        }
+        else if (selectedValue == JOptionPane.NO_OPTION)
+        {
+            System.out.println("Not exiting currently ...");
+        }
     }
 
 }

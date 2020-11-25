@@ -1,9 +1,14 @@
 package wlan.utility;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /*
  * The MIT License
@@ -35,14 +40,18 @@ import javax.swing.JOptionPane;
 public class landing_page extends javax.swing.JFrame
 {
 
-    /**
-     * Creates new form landing_page
-     */
+    ImageIcon root_img;
+
     public landing_page ()
     {
         initComponents();
+        this.setIconImage(new ImageIcon(getClass().getResource("/icons/main_icon.png")).getImage());
+        //will set the icon for rootPane
     }
 
+    /**
+     * Creates new form landing_page
+     */
     //driver vars declararation
     String ssid_name; //storing ssid input here
     String ssid_pass; //storing pass input here
@@ -72,26 +81,29 @@ public class landing_page extends javax.swing.JFrame
 
         //converting StringBuilder to a new string -->
         set_config = parsed_cmd.toString();
-        status_field.setText("Starting Access-Point with Credentials\nSSID=   " + ssid_name + "\n" + "Password= " + ssid_pass + "\n");
         System.out.println(set_config);
 
         //checking user input for valid operation ---->
         if (ssid_name.isEmpty() | ssid_pass.isEmpty())
         {
-            status_field.setForeground(Color.red);
-            status_field.setText("SSID OR PASSWORD CAN'T BE LEFT EMPTY ...!\n");
+            JOptionPane.showMessageDialog(this, "Username or Password can't be left Empty", "Input Error", JOptionPane.WARNING_MESSAGE);
+            //status_field.setForeground(Color.red);
+            //status_field.setText("SSID OR PASSWORD CAN'T BE LEFT EMPTY ...!\n");
             ssid_name = ssid_field.getText();
             ssid_pass = new String(pass_field.getPassword());
         }
         else if (ssid_pass.length() <= 7 | ssid_pass.length() >= 64)
         {
-            status_field.setForeground(Color.red);
-            status_field.setText("PASSWORD MUST BE 8 TO 63 CHARACTERS LONG...!\n");
+            JOptionPane.showMessageDialog(this, "Password must be 8 to 63 characters long", "Password Error", JOptionPane.WARNING_MESSAGE);
+            //status_field.setForeground(Color.red);
+            //status_field.setText("PASSWORD MUST BE 8 TO 63 CHARACTERS LONG...!\n");
             ssid_pass = new String(pass_field.getPassword());
         }
         else
         {
             status_field.setForeground(Color.black);
+            status_field.setText("Starting Access-Point with Credentials\nSSID=   " + ssid_name + "\n" + "Password= " + ssid_pass + "\n");
+
             try
             {
                 // WARNING ->> CODE FOR TESTING PURPOSE ONLY, DO NOT UNCOMMENT AND RUN SIMULTANEOUSLY WITH ABOVE CODE, MAY PRODUCE UNPREDICTABLE EFFECTS
@@ -155,7 +167,8 @@ public class landing_page extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jLabel1 = new javax.swing.JLabel();
         pass_field = new javax.swing.JPasswordField();
@@ -189,12 +202,19 @@ public class landing_page extends javax.swing.JFrame
         feedback_menu = new javax.swing.JMenuItem();
         about_menu = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Hotspot Utility");
         setBounds(new java.awt.Rectangle(450, 190, 12, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setIconImages(null);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosing(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -203,16 +223,20 @@ public class landing_page extends javax.swing.JFrame
         pass_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         pass_field.setToolTipText("Enter password here, must be greater than 8 characters");
         pass_field.setPreferredSize(new java.awt.Dimension(56, 20));
-        pass_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        pass_field.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 pass_fieldActionPerformed(evt);
             }
         });
 
         ssid_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ssid_field.setToolTipText("Enter the name to display as a network name");
-        ssid_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        ssid_field.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 ssid_fieldActionPerformed(evt);
             }
         });
@@ -228,16 +252,20 @@ public class landing_page extends javax.swing.JFrame
         start_btn.setBorder(null);
         start_btn.setBorderPainted(false);
         start_btn.setPreferredSize(new java.awt.Dimension(77, 23));
-        start_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        start_btn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 start_btnActionPerformed(evt);
             }
         });
 
         showpass.setText("Show password");
         showpass.setPreferredSize(new java.awt.Dimension(93, 21));
-        showpass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        showpass.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 showpassActionPerformed(evt);
             }
         });
@@ -246,8 +274,10 @@ public class landing_page extends javax.swing.JFrame
         stop_btn.setToolTipText("Hotspot will be terminated");
         stop_btn.setBorderPainted(false);
         stop_btn.setPreferredSize(new java.awt.Dimension(77, 23));
-        stop_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        stop_btn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 stop_btnActionPerformed(evt);
             }
         });
@@ -255,8 +285,10 @@ public class landing_page extends javax.swing.JFrame
         restart_btn.setText("RESTART");
         restart_btn.setToolTipText("Hotspot will be stopped and then restarted");
         restart_btn.setBorderPainted(false);
-        restart_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        restart_btn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 restart_btnActionPerformed(evt);
             }
         });
@@ -266,8 +298,10 @@ public class landing_page extends javax.swing.JFrame
         reset_btn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         reset_btn.setBorderPainted(false);
         reset_btn.setPreferredSize(new java.awt.Dimension(77, 23));
-        reset_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        reset_btn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 reset_btnActionPerformed(evt);
             }
         });
@@ -284,16 +318,20 @@ public class landing_page extends javax.swing.JFrame
 
         ssid_clr_btn.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         ssid_clr_btn.setText("Clear");
-        ssid_clr_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        ssid_clr_btn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 ssid_clr_btnActionPerformed(evt);
             }
         });
 
         pass_clr_btn.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         pass_clr_btn.setText("Clear");
-        pass_clr_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        pass_clr_btn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 pass_clr_btnActionPerformed(evt);
             }
         });
@@ -304,8 +342,10 @@ public class landing_page extends javax.swing.JFrame
 
         check_driver_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK));
         check_driver_menu.setText("Check for Drivers");
-        check_driver_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        check_driver_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 check_driver_menuActionPerformed(evt);
             }
         });
@@ -314,54 +354,72 @@ public class landing_page extends javax.swing.JFrame
         jMenu1.add(pre_check_menu);
 
         how_to_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK));
+        how_to_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/how_to.png"))); // NOI18N
         how_to_menu.setText("How to ?");
-        how_to_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        how_to_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 how_to_menuActionPerformed(evt);
             }
         });
         jMenu1.add(how_to_menu);
 
         start_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        start_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/start.png"))); // NOI18N
         start_wlan_menu.setText("Start wlan");
-        start_wlan_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        start_wlan_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 start_wlan_menuActionPerformed(evt);
             }
         });
         jMenu1.add(start_wlan_menu);
 
         stop_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        stop_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/stop.png"))); // NOI18N
         stop_wlan_menu.setText("Stop wlan");
-        stop_wlan_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        stop_wlan_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 stop_wlan_menuActionPerformed(evt);
             }
         });
         jMenu1.add(stop_wlan_menu);
 
         restart_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        restart_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/restart.png"))); // NOI18N
         restart_wlan_menu.setText("Restart wlan");
-        restart_wlan_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        restart_wlan_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 restart_wlan_menuActionPerformed(evt);
             }
         });
         jMenu1.add(restart_wlan_menu);
 
         reset_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        reset_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/reset.png"))); // NOI18N
         reset_wlan_menu.setText("Reset ");
-        reset_wlan_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        reset_wlan_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 reset_wlan_menuActionPerformed(evt);
             }
         });
         jMenu1.add(reset_wlan_menu);
 
         exit_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        exit_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exit.png"))); // NOI18N
         exit_menu.setText("Exit");
-        exit_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exit_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 exit_menuActionPerformed(evt);
             }
         });
@@ -371,36 +429,49 @@ public class landing_page extends javax.swing.JFrame
 
         jMenu2.setText("More");
 
+        usage_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/usage.png"))); // NOI18N
         usage_menu.setText("Usage");
-        usage_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        usage_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 usage_menuActionPerformed(evt);
             }
         });
         jMenu2.add(usage_menu);
 
+        TOS_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tos.png"))); // NOI18N
         TOS_menu.setText("Terms of Service");
-        TOS_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        TOS_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 TOS_menuActionPerformed(evt);
             }
         });
         jMenu2.add(TOS_menu);
 
+        developer_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/developer.png"))); // NOI18N
         developer_menu.setText("Developer");
         jMenu2.add(developer_menu);
 
+        feedback_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/feedback.png"))); // NOI18N
         feedback_menu.setText("Feedback");
-        feedback_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        feedback_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 feedback_menuActionPerformed(evt);
             }
         });
         jMenu2.add(feedback_menu);
 
+        about_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/about.png"))); // NOI18N
         about_menu.setText("About");
-        about_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        about_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 about_menuActionPerformed(evt);
             }
         });
@@ -553,31 +624,7 @@ public class landing_page extends javax.swing.JFrame
     }//GEN-LAST:event_TOS_menuActionPerformed
 
     private void exit_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_menuActionPerformed
-        Object choice[]
-                =
-                {
-                    "Yes", "No"
-                };
-        // Object defaultchoice = choice[0]; //can also be specified as an Object
-        int selectedValue = JOptionPane.showOptionDialog(
-                rootPane,
-                "Sure to Exit ?",
-                "Confirm",
-                JOptionPane.YES_NO_CANCEL_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                choice,
-                choice[0]
-        );
-
-        if (selectedValue == JOptionPane.YES_OPTION)
-        {
-            System.exit(0);
-        }
-        else if (selectedValue == JOptionPane.NO_OPTION)
-        {
-            System.out.println("Not exiting currently ...");
-        }
+        new core_funcs().exit_code();
     }//GEN-LAST:event_exit_menuActionPerformed
 
     private void about_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_menuActionPerformed
@@ -647,6 +694,11 @@ public class landing_page extends javax.swing.JFrame
         status_field.setText("The hostednetwork stopped");
     }//GEN-LAST:event_stop_wlan_menuActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosing
+    {//GEN-HEADEREND:event_formWindowClosing
+        new core_funcs().exit_code();
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -665,32 +717,29 @@ public class landing_page extends javax.swing.JFrame
         {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
             {
-                if ("Windows".equals(info.getName()))
+                if ("nimbus".equals(info.getName()))
                 {
-                    javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         }
-        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex)
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(landing_page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         //</editor-fold>
         //</editor-fold>
-
         /*
          * Create and display the form
          */
-        java.awt.EventQueue.invokeLater(new Runnable()
+        java.awt.EventQueue.invokeLater(() ->
         {
-            public void run ()
-            {
-                new landing_page().setVisible(true);
-            }
+            new landing_page().setVisible(true);
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -721,9 +770,10 @@ public class landing_page extends javax.swing.JFrame
     private javax.swing.JTextField ssid_field;
     private javax.swing.JButton start_btn;
     private javax.swing.JMenuItem start_wlan_menu;
-    public javax.swing.JTextArea status_field;
+    private javax.swing.JTextArea status_field;
     private javax.swing.JButton stop_btn;
     private javax.swing.JMenuItem stop_wlan_menu;
     private javax.swing.JMenuItem usage_menu;
     // End of variables declaration//GEN-END:variables
+
 }
