@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import menubar_items.about_form;
 
 /*
  * The MIT License
@@ -39,6 +40,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class landing_page extends javax.swing.JFrame
 {
+
     public landing_page ()
     {
         try
@@ -51,10 +53,10 @@ public class landing_page extends javax.swing.JFrame
         {
             Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         initComponents();
         //will set the icon for rootPane
-        this.setIconImage(new ImageIcon(getClass().getResource("/icons/main_icon.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/icons/title_icon.png")).getImage());
     }
 
     /**
@@ -119,16 +121,11 @@ public class landing_page extends javax.swing.JFrame
                 //illustrating string concatenation in Runtime.exec()
 
                 Process q = Runtime.getRuntime().exec(set_config);
-                try
-                {
-                    Thread.sleep(1800);
-                }
-                catch (InterruptedException ex)
-                {
-                    System.out.println("Interrupted exception after pushing the set_credential command and before the wlan and before starting it thereafter...");
-                }
                 //will setup the specified parsed config command for hotspot
-                // Process process = Runtime.getRuntime().exec(start_cmd); // will then turn on the hotspot
+                
+                Thread.sleep(1000);
+                //wait for 1sec after pushing the config command
+
                 BufferedReader reader = new BufferedReader(new InputStreamReader(q.getInputStream()));
                 String line;
                 while ((line = reader.readLine()) != null)
@@ -136,6 +133,8 @@ public class landing_page extends javax.swing.JFrame
                     status_field.append("\n" + line);
                     System.out.println(line);
                 }
+                
+                //Process process = Runtime.getRuntime().exec(start_cmd); // will then turn on the hotspot
             }
             catch (Exception ex)
             {
@@ -378,7 +377,7 @@ public class landing_page extends javax.swing.JFrame
 
         how_to_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK));
         how_to_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        how_to_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/how_to.png"))); // NOI18N
+        how_to_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/how_to_menu.png"))); // NOI18N
         how_to_menu.setText("How to ?");
         how_to_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -391,7 +390,7 @@ public class landing_page extends javax.swing.JFrame
 
         start_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         start_wlan_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        start_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/start.png"))); // NOI18N
+        start_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/start_menu.png"))); // NOI18N
         start_wlan_menu.setText("Start wlan");
         start_wlan_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -404,7 +403,7 @@ public class landing_page extends javax.swing.JFrame
 
         stop_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         stop_wlan_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        stop_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/stop.png"))); // NOI18N
+        stop_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/stop_menu.png"))); // NOI18N
         stop_wlan_menu.setText("Stop wlan");
         stop_wlan_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -417,7 +416,7 @@ public class landing_page extends javax.swing.JFrame
 
         restart_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         restart_wlan_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        restart_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/restart.png"))); // NOI18N
+        restart_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/restart_menu.png"))); // NOI18N
         restart_wlan_menu.setText("Restart wlan");
         restart_wlan_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -430,7 +429,7 @@ public class landing_page extends javax.swing.JFrame
 
         reset_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         reset_wlan_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        reset_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/reset.png"))); // NOI18N
+        reset_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/reset_menu.png"))); // NOI18N
         reset_wlan_menu.setText("Reset ");
         reset_wlan_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -443,7 +442,7 @@ public class landing_page extends javax.swing.JFrame
 
         exit_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         exit_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        exit_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exit.png"))); // NOI18N
+        exit_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exit_menu.png"))); // NOI18N
         exit_menu.setText("Exit");
         exit_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -460,7 +459,7 @@ public class landing_page extends javax.swing.JFrame
         jMenu2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
 
         usage_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        usage_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/usage.png"))); // NOI18N
+        usage_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/usage_menu.png"))); // NOI18N
         usage_menu.setText("Usage");
         usage_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -472,7 +471,7 @@ public class landing_page extends javax.swing.JFrame
         jMenu2.add(usage_menu);
 
         TOS_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        TOS_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tos.png"))); // NOI18N
+        TOS_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tos_menu.png"))); // NOI18N
         TOS_menu.setText("Terms of Service");
         TOS_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -484,12 +483,19 @@ public class landing_page extends javax.swing.JFrame
         jMenu2.add(TOS_menu);
 
         developer_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        developer_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/developer.png"))); // NOI18N
+        developer_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/developer_menu.png"))); // NOI18N
         developer_menu.setText("Developer");
+        developer_menu.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                developer_menuActionPerformed(evt);
+            }
+        });
         jMenu2.add(developer_menu);
 
         feedback_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        feedback_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/feedback.png"))); // NOI18N
+        feedback_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/feedback_menu.png"))); // NOI18N
         feedback_menu.setText("Feedback");
         feedback_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -501,7 +507,7 @@ public class landing_page extends javax.swing.JFrame
         jMenu2.add(feedback_menu);
 
         about_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        about_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/about.png"))); // NOI18N
+        about_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/about_menu.png"))); // NOI18N
         about_menu.setText("About");
         about_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -654,11 +660,11 @@ public class landing_page extends javax.swing.JFrame
     }//GEN-LAST:event_pass_clr_btnActionPerformed
 
     private void usage_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usage_menuActionPerformed
-        // TODO add your handling code here:
+        new core_funcs().usage_policy();
     }//GEN-LAST:event_usage_menuActionPerformed
 
     private void TOS_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TOS_menuActionPerformed
-        // TODO add your handling code here:
+        new core_funcs().usage_policy();
     }//GEN-LAST:event_TOS_menuActionPerformed
 
     private void exit_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_menuActionPerformed
@@ -666,7 +672,8 @@ public class landing_page extends javax.swing.JFrame
     }//GEN-LAST:event_exit_menuActionPerformed
 
     private void about_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_menuActionPerformed
-        // TODO add your handling code here:
+        new about_form().setVisible(true);
+        //will display the about form
     }//GEN-LAST:event_about_menuActionPerformed
 
     private void how_to_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_how_to_menuActionPerformed
@@ -693,7 +700,7 @@ public class landing_page extends javax.swing.JFrame
     }//GEN-LAST:event_reset_wlan_menuActionPerformed
 
     private void feedback_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedback_menuActionPerformed
-        // TODO add your handling code here:
+        new core_funcs().feedback();
     }//GEN-LAST:event_feedback_menuActionPerformed
 
     private void start_wlan_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_wlan_menuActionPerformed
@@ -737,6 +744,11 @@ public class landing_page extends javax.swing.JFrame
         new core_funcs().exit_code();
     }//GEN-LAST:event_formWindowClosing
 
+    private void developer_menuActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_developer_menuActionPerformed
+    {//GEN-HEADEREND:event_developer_menuActionPerformed
+        new core_funcs().devs_site();
+    }//GEN-LAST:event_developer_menuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -751,23 +763,18 @@ public class landing_page extends javax.swing.JFrame
          * default look and feel. For details see
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
-        /*for (UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                System.out.println(info.getClassName());
-                try
-                {
-                    if ("Windows".equals(info.getName()))
-                    {
-                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-                
-                catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex)
-                    {
-                        Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-            }*/       
+ /*
+         * for (UIManager.LookAndFeelInfo info :
+         * javax.swing.UIManager.getInstalledLookAndFeels()) {
+         * System.out.println(info.getClassName()); try { if
+         * ("Windows".equals(info.getName())) {
+         * javax.swing.UIManager.setLookAndFeel(info.getClassName()); break; } }
+         *
+         * catch (ClassNotFoundException | InstantiationException |
+         * IllegalAccessException | UnsupportedLookAndFeelException ex) {
+         * Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE,
+         * null, ex); } }
+         */
         //</editor-fold>
 
         //</editor-fold>

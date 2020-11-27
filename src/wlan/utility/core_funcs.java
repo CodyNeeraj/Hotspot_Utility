@@ -97,33 +97,24 @@ public class core_funcs
 
         if (selectedValue == JOptionPane.YES_OPTION)
         {
-            try
+           /* try
             {
                 Runtime.getRuntime().exec("netsh wlan stop hostednetwork");
-                try
-                {
-                    Thread.sleep(2000);
-                }
-                catch (InterruptedException ex)
-                {
-                    System.out.println("Interrupted exception after turning off the wlan and before restarting it....");
-                }
-                /*
-                 * Process process = Runtime.getRuntime().exec("netsh wlan start
-                 * hostednetwork"); BufferedReader reader = new
-                 * BufferedReader(new
-                 * InputStreamReader(process.getInputStream())); String line;
-                 * while ((line = reader.readLine()) != null) {
-                 * System.out.println(line);
-                }
-                 */
+                Thread.sleep(1000);
+                Process process = Runtime.getRuntime().exec("netsh wlan start hostednetwork");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                 while ((line = reader.readLine()) != null)
+                 {
+                     System.out.println(line);
+                 }
             }
             catch (Exception e)
             {
                 System.out.println("Exception ocurred in restart_func()");
                 e.printStackTrace();
             }
-            System.out.println("Hotspot restarted sucesfully..");
+            System.out.println("Hotspot restarted sucesfully..");*/
         }
 
     }
@@ -165,7 +156,7 @@ public class core_funcs
         }
     }
 
-    public void usage_policy ()
+    public void usage_policy () //aka developer Profile
     {
         Object choice[] =
         {
@@ -173,7 +164,7 @@ public class core_funcs
         };
         int selectedValue = JOptionPane.showOptionDialog(
                 null,
-                "This will take you to the Developer's site ..!",
+                "This will take you to the Developer's site !",
                 "Confirm",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
@@ -308,6 +299,93 @@ public class core_funcs
         else if (selectedValue == JOptionPane.NO_OPTION)
         {
             System.out.println("Not exiting currently ...");
+        }
+    }
+
+    public void feedback ()
+    {
+        Object choice[] =
+        {
+            "Continue", "Cancel"
+        };
+        int selectedValue = JOptionPane.showOptionDialog(
+                null,
+                "Your feedback will help me to make this software better !\nA browser windows will open to submit the feedback ",
+                "Feedback",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choice,
+                choice[0]
+        );
+        if (selectedValue == JOptionPane.YES_OPTION)
+        {
+            System.out.println("Browser for feedback is opened..");
+            //program keeps running smoothly
+            String url = "null";
+            if (Desktop.isDesktopSupported())
+            {
+                Desktop desktop = Desktop.getDesktop();
+                try
+                {
+                    desktop.browse(new URI(url));
+                }
+                catch (IOException | URISyntaxException e)
+                {
+                    // TODO Auto-generated catch block
+                }
+            }
+            //for cross platform dependancy (if used other than in windows)
+            /*
+             * else { Runtime runtime = Runtime.getRuntime(); try {
+             * runtime.exec("xdg-open " + url); } catch (IOException e) { //
+             * TODO Auto-generated catch block
+             *
+             * }
+             *
+             * //else block is for cross platform dependancy only
+             *
+             */
+        }
+        if (selectedValue == JOptionPane.NO_OPTION)
+        {
+            System.out.println("User cancelled the feedback dialog");
+        }
+    }
+
+    public void devs_site ()
+    {
+        Object choice[] =
+        {
+            "Continue", "Cancel"
+        };
+        int selectedValue = JOptionPane.showOptionDialog(
+                null,
+                "This will take you to the Developer's site !",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choice,
+                choice[0]
+        );
+        if (selectedValue == JOptionPane.YES_OPTION)
+        {
+            System.out.println("Browser is opened.. for codyneeraj site");
+            //program keeps running smoothly
+            String url = "https://github.com/CodyNeeraj";
+            if (Desktop.isDesktopSupported())
+            {
+                Desktop desktop = Desktop.getDesktop();
+                try
+                {
+                    desktop.browse(new URI(url));
+                }
+                catch (IOException | URISyntaxException e)
+                {
+                    // TODO Auto-generated catch block
+                }
+            }
         }
     }
 

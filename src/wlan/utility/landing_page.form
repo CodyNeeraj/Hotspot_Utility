@@ -57,7 +57,7 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/how_to.png"/>
+                  <Image iconType="3" name="/icons/how_to_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="How to ?"/>
               </Properties>
@@ -74,7 +74,7 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/start.png"/>
+                  <Image iconType="3" name="/icons/start_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Start wlan"/>
               </Properties>
@@ -91,7 +91,7 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/stop.png"/>
+                  <Image iconType="3" name="/icons/stop_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Stop wlan"/>
               </Properties>
@@ -108,7 +108,7 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/restart.png"/>
+                  <Image iconType="3" name="/icons/restart_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Restart wlan"/>
               </Properties>
@@ -125,7 +125,7 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/reset.png"/>
+                  <Image iconType="3" name="/icons/reset_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reset "/>
               </Properties>
@@ -142,7 +142,7 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/exit.png"/>
+                  <Image iconType="3" name="/icons/exit_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
@@ -166,7 +166,7 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/usage.png"/>
+                  <Image iconType="3" name="/icons/usage_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usage"/>
               </Properties>
@@ -180,7 +180,7 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/tos.png"/>
+                  <Image iconType="3" name="/icons/tos_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Terms of Service"/>
               </Properties>
@@ -194,10 +194,13 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/developer.png"/>
+                  <Image iconType="3" name="/icons/developer_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Developer"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="developer_menuActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="feedback_menu">
               <Properties>
@@ -205,7 +208,7 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/feedback.png"/>
+                  <Image iconType="3" name="/icons/feedback_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Feedback"/>
               </Properties>
@@ -219,7 +222,7 @@
                   <Font name="Tahoma" size="11" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/about.png"/>
+                  <Image iconType="3" name="/icons/about_menu.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="About"/>
               </Properties>
