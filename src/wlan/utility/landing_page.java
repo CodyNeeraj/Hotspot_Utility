@@ -1,13 +1,13 @@
 package wlan.utility;
 
 import java.awt.Color;
-import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /*
@@ -39,14 +39,22 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class landing_page extends javax.swing.JFrame
 {
-
-    ImageIcon root_img;
-
     public landing_page ()
     {
+        try
+        {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            //will set the deafault installed l&F as windows Native
+        }
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex)
+        {
+            Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         initComponents();
-        this.setIconImage(new ImageIcon(getClass().getResource("/icons/main_icon.png")).getImage());
         //will set the icon for rootPane
+        this.setIconImage(new ImageIcon(getClass().getResource("/icons/main_icon.png")).getImage());
     }
 
     /**
@@ -217,10 +225,10 @@ public class landing_page extends javax.swing.JFrame
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel1.setText("WLAN Utility");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Hotspot Utility");
 
-        pass_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        pass_field.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         pass_field.setToolTipText("Enter password here, must be greater than 8 characters");
         pass_field.setPreferredSize(new java.awt.Dimension(56, 20));
         pass_field.addActionListener(new java.awt.event.ActionListener()
@@ -231,7 +239,7 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        ssid_field.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        ssid_field.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         ssid_field.setToolTipText("Enter the name to display as a network name");
         ssid_field.addActionListener(new java.awt.event.ActionListener()
         {
@@ -241,16 +249,15 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel2.setText("SSID");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel3.setText("Password");
 
-        start_btn.setText("START");
+        start_btn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        start_btn.setText("Start");
         start_btn.setToolTipText("Wireless Hotspot will started with entered credentials");
-        start_btn.setBorder(null);
-        start_btn.setBorderPainted(false);
         start_btn.setPreferredSize(new java.awt.Dimension(77, 23));
         start_btn.addActionListener(new java.awt.event.ActionListener()
         {
@@ -260,6 +267,7 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
+        showpass.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         showpass.setText("Show password");
         showpass.setPreferredSize(new java.awt.Dimension(93, 21));
         showpass.addActionListener(new java.awt.event.ActionListener()
@@ -270,9 +278,9 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        stop_btn.setText("STOP");
+        stop_btn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        stop_btn.setText("Stop");
         stop_btn.setToolTipText("Hotspot will be terminated");
-        stop_btn.setBorderPainted(false);
         stop_btn.setPreferredSize(new java.awt.Dimension(77, 23));
         stop_btn.addActionListener(new java.awt.event.ActionListener()
         {
@@ -282,9 +290,13 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        restart_btn.setText("RESTART");
+        restart_btn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        restart_btn.setText("Restart");
         restart_btn.setToolTipText("Hotspot will be stopped and then restarted");
-        restart_btn.setBorderPainted(false);
+        restart_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        restart_btn.setMaximumSize(new java.awt.Dimension(59, 23));
+        restart_btn.setMinimumSize(new java.awt.Dimension(59, 23));
+        restart_btn.setPreferredSize(new java.awt.Dimension(59, 23));
         restart_btn.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -293,10 +305,9 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        reset_btn.setText("RESET");
-        reset_btn.setToolTipText("Hotspot will terminated and gets deleted (needs new credentials)");
-        reset_btn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        reset_btn.setBorderPainted(false);
+        reset_btn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        reset_btn.setText("Reset");
+        reset_btn.setToolTipText("Everything in Program will gets resetted (not your settings)");
         reset_btn.setPreferredSize(new java.awt.Dimension(77, 23));
         reset_btn.addActionListener(new java.awt.event.ActionListener()
         {
@@ -307,17 +318,19 @@ public class landing_page extends javax.swing.JFrame
         });
 
         status_field.setEditable(false);
-        status_field.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        status_field.setRows(100);
-        status_field.setTabSize(2);
-        status_field.setToolTipText("Drag Useful info from here using Copy & Paste");
+        status_field.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        status_field.setLineWrap(true);
+        status_field.setToolTipText("Drag info from here using Copy & Paste");
         status_field.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         status_field.setDragEnabled(true);
         jScrollPane1.setViewportView(status_field);
         status_field.setLineWrap(true);
 
-        ssid_clr_btn.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        ssid_clr_btn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 10)); // NOI18N
         ssid_clr_btn.setText("Clear");
+        ssid_clr_btn.setAutoscrolls(true);
+        ssid_clr_btn.setDefaultCapable(false);
+        ssid_clr_btn.setInheritsPopupMenu(true);
         ssid_clr_btn.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -326,7 +339,7 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        pass_clr_btn.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        pass_clr_btn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 10)); // NOI18N
         pass_clr_btn.setText("Clear");
         pass_clr_btn.addActionListener(new java.awt.event.ActionListener()
         {
@@ -336,11 +349,21 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
+        jMenuBar1.setBackground(java.awt.SystemColor.activeCaption);
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(120, 21));
+
         jMenu1.setText("Commands");
+        jMenu1.setFocusPainted(true);
+        jMenu1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jMenu1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jMenu1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         pre_check_menu.setText("Pre-Checks");
+        pre_check_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        pre_check_menu.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
         check_driver_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK));
+        check_driver_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         check_driver_menu.setText("Check for Drivers");
         check_driver_menu.addActionListener(new java.awt.event.ActionListener()
         {
@@ -354,6 +377,7 @@ public class landing_page extends javax.swing.JFrame
         jMenu1.add(pre_check_menu);
 
         how_to_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK));
+        how_to_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         how_to_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/how_to.png"))); // NOI18N
         how_to_menu.setText("How to ?");
         how_to_menu.addActionListener(new java.awt.event.ActionListener()
@@ -366,6 +390,7 @@ public class landing_page extends javax.swing.JFrame
         jMenu1.add(how_to_menu);
 
         start_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        start_wlan_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         start_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/start.png"))); // NOI18N
         start_wlan_menu.setText("Start wlan");
         start_wlan_menu.addActionListener(new java.awt.event.ActionListener()
@@ -378,6 +403,7 @@ public class landing_page extends javax.swing.JFrame
         jMenu1.add(start_wlan_menu);
 
         stop_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        stop_wlan_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         stop_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/stop.png"))); // NOI18N
         stop_wlan_menu.setText("Stop wlan");
         stop_wlan_menu.addActionListener(new java.awt.event.ActionListener()
@@ -390,6 +416,7 @@ public class landing_page extends javax.swing.JFrame
         jMenu1.add(stop_wlan_menu);
 
         restart_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        restart_wlan_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         restart_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/restart.png"))); // NOI18N
         restart_wlan_menu.setText("Restart wlan");
         restart_wlan_menu.addActionListener(new java.awt.event.ActionListener()
@@ -402,6 +429,7 @@ public class landing_page extends javax.swing.JFrame
         jMenu1.add(restart_wlan_menu);
 
         reset_wlan_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        reset_wlan_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         reset_wlan_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/reset.png"))); // NOI18N
         reset_wlan_menu.setText("Reset ");
         reset_wlan_menu.addActionListener(new java.awt.event.ActionListener()
@@ -414,6 +442,7 @@ public class landing_page extends javax.swing.JFrame
         jMenu1.add(reset_wlan_menu);
 
         exit_menu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        exit_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         exit_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exit.png"))); // NOI18N
         exit_menu.setText("Exit");
         exit_menu.addActionListener(new java.awt.event.ActionListener()
@@ -428,7 +457,9 @@ public class landing_page extends javax.swing.JFrame
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("More");
+        jMenu2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
 
+        usage_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         usage_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/usage.png"))); // NOI18N
         usage_menu.setText("Usage");
         usage_menu.addActionListener(new java.awt.event.ActionListener()
@@ -440,6 +471,7 @@ public class landing_page extends javax.swing.JFrame
         });
         jMenu2.add(usage_menu);
 
+        TOS_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TOS_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tos.png"))); // NOI18N
         TOS_menu.setText("Terms of Service");
         TOS_menu.addActionListener(new java.awt.event.ActionListener()
@@ -451,10 +483,12 @@ public class landing_page extends javax.swing.JFrame
         });
         jMenu2.add(TOS_menu);
 
+        developer_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         developer_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/developer.png"))); // NOI18N
         developer_menu.setText("Developer");
         jMenu2.add(developer_menu);
 
+        feedback_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         feedback_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/feedback.png"))); // NOI18N
         feedback_menu.setText("Feedback");
         feedback_menu.addActionListener(new java.awt.event.ActionListener()
@@ -466,6 +500,7 @@ public class landing_page extends javax.swing.JFrame
         });
         jMenu2.add(feedback_menu);
 
+        about_menu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         about_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/about.png"))); // NOI18N
         about_menu.setText("About");
         about_menu.addActionListener(new java.awt.event.ActionListener()
@@ -486,60 +521,54 @@ public class landing_page extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ssid_clr_btn)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(showpass, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pass_clr_btn))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(ssid_field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(17, 17, 17)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(start_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(stop_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(restart_btn)
-                            .addComponent(reset_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(17, 17, 17))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ssid_clr_btn)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(showpass, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(pass_clr_btn))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(76, 76, 76)
+                                            .addComponent(ssid_field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(start_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(stop_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(reset_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(restart_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
+                .addGap(132, 132, 132)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(start_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(stop_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(restart_btn)
-                        .addGap(11, 11, 11)
-                        .addComponent(reset_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ssid_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -549,20 +578,29 @@ public class landing_page extends javax.swing.JFrame
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(7, 7, 7)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel3))
-                                    .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
                                 .addGap(7, 7, 7)
                                 .addComponent(pass_clr_btn))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(58, 58, 58)
-                                .addComponent(showpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(showpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(start_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(stop_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(restart_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(reset_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleDescription("");
 
         pack();
         setLocationRelativeTo(null);
@@ -713,21 +751,23 @@ public class landing_page extends javax.swing.JFrame
          * default look and feel. For details see
          * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+        /*for (UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
             {
-                if ("nimbus".equals(info.getName()))
+                System.out.println(info.getClassName());
+                try
                 {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+                    if ("Windows".equals(info.getName()))
+                    {
+                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
                 }
-            }
-        }
-        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex)
-        {
-            Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                
+                catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex)
+                    {
+                        Logger.getLogger(landing_page.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }*/       
         //</editor-fold>
 
         //</editor-fold>
