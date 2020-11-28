@@ -97,7 +97,7 @@ public class core_funcs
 
         if (selectedValue == JOptionPane.YES_OPTION)
         {
-           /* try
+            /* try
             {
                 Runtime.getRuntime().exec("netsh wlan stop hostednetwork");
                 Thread.sleep(1000);
@@ -322,7 +322,7 @@ public class core_funcs
         {
             System.out.println("Browser for feedback is opened..");
             //program keeps running smoothly
-            String url = "null";
+            String url = "https://forms.gle/ZkyanznFEqpLrrWf8";
             if (Desktop.isDesktopSupported())
             {
                 Desktop desktop = Desktop.getDesktop();
@@ -361,7 +361,7 @@ public class core_funcs
         };
         int selectedValue = JOptionPane.showOptionDialog(
                 null,
-                "This will take you to the Developer's site !",
+                "This will take you to the Developer's Profile !",
                 "Confirm",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,

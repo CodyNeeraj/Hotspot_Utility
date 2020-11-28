@@ -254,7 +254,7 @@ public class landing_page extends javax.swing.JFrame
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel3.setText("Password");
 
-        start_btn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        start_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         start_btn.setText("Start");
         start_btn.setToolTipText("Wireless Hotspot will started with entered credentials");
         start_btn.setPreferredSize(new java.awt.Dimension(77, 23));
@@ -266,7 +266,7 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        showpass.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        showpass.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         showpass.setText("Show password");
         showpass.setPreferredSize(new java.awt.Dimension(93, 21));
         showpass.addActionListener(new java.awt.event.ActionListener()
@@ -277,7 +277,7 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        stop_btn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        stop_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         stop_btn.setText("Stop");
         stop_btn.setToolTipText("Hotspot will be terminated");
         stop_btn.setPreferredSize(new java.awt.Dimension(77, 23));
@@ -289,7 +289,7 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        restart_btn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        restart_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         restart_btn.setText("Restart");
         restart_btn.setToolTipText("Hotspot will be stopped and then restarted");
         restart_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -304,7 +304,7 @@ public class landing_page extends javax.swing.JFrame
             }
         });
 
-        reset_btn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        reset_btn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         reset_btn.setText("Reset");
         reset_btn.setToolTipText("Everything in Program will gets resetted (not your settings)");
         reset_btn.setPreferredSize(new java.awt.Dimension(77, 23));
@@ -317,7 +317,7 @@ public class landing_page extends javax.swing.JFrame
         });
 
         status_field.setEditable(false);
-        status_field.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        status_field.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         status_field.setLineWrap(true);
         status_field.setToolTipText("Drag info from here using Copy & Paste");
         status_field.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));

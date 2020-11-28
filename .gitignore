@@ -1,9 +1,8 @@
 # contains compiled code -> classes and some data about where to save JAr after a clean build
 build/
 
-# contains jar files for building executable jars afer compilation of project
+# contains library files for building executable jars afer compilation of project
 dist/lib
-dist/*.jar
 
 # all test folders
 test/
