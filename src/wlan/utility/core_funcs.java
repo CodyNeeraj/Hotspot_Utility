@@ -61,13 +61,8 @@ public class core_funcs
         {
             try
             {
-                Process process = Runtime.getRuntime().exec("netsh wlan stop hostednetwork");
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line;
-                while ((line = reader.readLine()) != null)
-                {
-                    System.out.println(line);
-                }
+                Runtime.getRuntime().exec("netsh wlan stop hostednetwork");
+                System.out.println("The hostednetwork stopped !");
             }
             catch (Exception e)
             {
@@ -97,24 +92,18 @@ public class core_funcs
 
         if (selectedValue == JOptionPane.YES_OPTION)
         {
-            /* try
+             try
             {
                 Runtime.getRuntime().exec("netsh wlan stop hostednetwork");
                 Thread.sleep(1000);
-                Process process = Runtime.getRuntime().exec("netsh wlan start hostednetwork");
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line;
-                 while ((line = reader.readLine()) != null)
-                 {
-                     System.out.println(line);
-                 }
+                Runtime.getRuntime().exec("netsh wlan start hostednetwork");
             }
             catch (Exception e)
             {
                 System.out.println("Exception ocurred in restart_func()");
                 e.printStackTrace();
             }
-            System.out.println("Hotspot restarted sucesfully..");*/
+            System.out.println("Hotspot restarted sucesfully..");
         }
 
     }

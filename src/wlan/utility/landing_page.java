@@ -64,9 +64,9 @@ public class landing_page extends javax.swing.JFrame
      */
     //driver vars declararation
     String ssid_name; //storing ssid input here
+    String ssid_name_trimmed;
     String ssid_pass; //storing pass input here
     String set_config; //end_cooked command (READY TO EXECUTE)
-    String start_cmd = "netsh wlan start hostednetwork";
 
     /*
      * String stop_cmd = "netsh wlan stop hostednetwork"; String restart_cmd =
@@ -80,12 +80,15 @@ public class landing_page extends javax.swing.JFrame
     {
         //getting inputs from client/user--->
         ssid_name = ssid_field.getText();
+        ssid_name_trimmed = ssid_name.replaceAll("\\s","");
+        //it will trim all ssid name by removing all the white spaces (if have any)
+        
         ssid_pass = new String(pass_field.getPassword());
 
         //code parsing to make a usable command starts here --->
         parsed_cmd.delete(0, parsed_cmd.length());  // will clear the buffer of Stringbuilder for next command enqueuing...
         parsed_cmd.append("netsh wlan set hostednetwork mode=allow ssid=")
-                .append(ssid_name)
+                .append(ssid_name_trimmed)
                 .append(" key=")
                 .append(ssid_pass);
 
@@ -111,8 +114,7 @@ public class landing_page extends javax.swing.JFrame
         }
         else
         {
-            status_field.setForeground(Color.black);
-            status_field.setText("Starting Access-Point with Credentials\nSSID=   " + ssid_name + "\n" + "Password= " + ssid_pass + "\n");
+            status_field.setText("Starting Access-Point with Credentials\nSSID=   " + ssid_name_trimmed + "\n" + "Password= " + ssid_pass + "\n");
 
             try
             {
@@ -134,7 +136,7 @@ public class landing_page extends javax.swing.JFrame
                     System.out.println(line);
                 }
                 
-                //Process process = Runtime.getRuntime().exec(start_cmd); // will then turn on the hotspot
+                Runtime.getRuntime().exec("netsh wlan start hostednetwork"); // will then turn on the hotspot
             }
             catch (Exception ex)
             {
@@ -634,7 +636,6 @@ public class landing_page extends javax.swing.JFrame
 
     private void reset_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_btnActionPerformed
         //resetting/clearing all fields
-        status_field.setForeground(Color.black);
         status_field.setText("");
         ssid_field.setText("");
         pass_field.setText("");
@@ -642,9 +643,8 @@ public class landing_page extends javax.swing.JFrame
     }//GEN-LAST:event_reset_btnActionPerformed
 
     private void stop_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stop_btnActionPerformed
-        status_field.setForeground(Color.black);
         new core_funcs().stop_func();
-        status_field.append("The hostednetwork stopped\n");
+        status_field.append("The hosted network has been Stopped...\n");
     }//GEN-LAST:event_stop_btnActionPerformed
 
     private void ssid_clr_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ssid_clr_btnActionPerformed
@@ -686,7 +686,6 @@ public class landing_page extends javax.swing.JFrame
     }//GEN-LAST:event_check_driver_menuActionPerformed
 
     private void restart_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restart_btnActionPerformed
-        status_field.setForeground(Color.black);
         new core_funcs().restart_func();
         status_field.append("Hotspot Restarted Succesfully\n");
     }//GEN-LAST:event_restart_btnActionPerformed
