@@ -10,7 +10,7 @@ It will help you in many ways for real world demonstrations like:
  - Many more research methods !
 
 ## Table of Contents :
- - [How to's](#how-to's)
+ - [How to's](#how-to)
  - [Main Features](#main-features)
  - [Usage](#usage-permissions)
  - [Dependancy](#supported-platforms-and-dependancies)
@@ -30,7 +30,7 @@ It will help you in many ways for real world demonstrations like:
 *Other working is in the program itself ;) !!*
 
 
-## How to's
+## How to
 ### Sharing connection from Windows :
 - **In order to share ethernet connection of your host machine, you *first* need to enable / configure the following steps :-**
 1. First run the RUN command using WIN+R keyword and then type the following command in the run dialog box
@@ -79,6 +79,6 @@ Updating soon !!!
  
  ## Feedback :
  Your feedback is important to me so please give a feedback 
- [Here](#https://forms.gle/ZkyanznFEqpLrrWf8)
+ [Here](https://forms.gle/ZkyanznFEqpLrrWf8)
  
 
