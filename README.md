@@ -14,7 +14,7 @@ It will help you in many ways for real world demonstrations like:
  - [Main Features](#main-features)
  - [Usage](#usage-permissions)
  - [Dependancy](#supported-platforms-and-dependancies)
- - [Terms of service](#terms-and-services)
+ - [Terms of service](#terms-of-services)
  - [Feedback](#feedback-:)
  
 ## Screenshots
@@ -66,6 +66,7 @@ This software is licensed under MIT License any Commercial use can't be done wit
   - Java  (Minimum version 1.7 must be installed, only for development)
 
 ## Terms of Service :
+Updating soon !!!
 
 ## License
 **Project's License is ->** **[MIT's License](https://opensource.org/licenses/MIT)**
