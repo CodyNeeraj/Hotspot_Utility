@@ -1,5 +1,6 @@
 # Hotspot Utility
 ![ICON](https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/src/icons/about_side_icon.png?raw=true)<br><br>
+[![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/LICENSE)<br>
 A small but **effective** utility program written by me in **[Java<sup>TM</sup>](https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html)** Especially for  **Microsoft Windows**<sup>**TM**</sup>  !
 
 #### Overview
@@ -66,7 +67,7 @@ This software is licensed under MIT License any Commercial use can't be done wit
  - Device must have wireless AP hardware built-in and all drivers for this must be already installed !
   - Java  (Minimum version 1.7 must be installed, only for development)
 
-## Terms of Service :
+## Terms of Service
 Updating soon !!!
 
 ## License
