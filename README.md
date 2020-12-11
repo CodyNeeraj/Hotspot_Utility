@@ -77,7 +77,7 @@ Updating soon !!!
 **DEVELOPMENT** :
 <br>This software is licensed under MIT License any Commercial use can't be done without asking the developer and liability to use all these sources must be in hand of developer only, you may need to ask me for using this in your project by giving credit to the native developer (me here :P )
  
- ## Feedback :
+ ## Feedback
  Your feedback is important to me so please give a feedback 
  [Here](https://forms.gle/ZkyanznFEqpLrrWf8)
  
