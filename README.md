@@ -15,7 +15,7 @@ It will help you in many ways for real world demonstrations like:
  - [Usage](#usage-permissions)
  - [Dependancy](#supported-platforms-and-dependancies)
  - [Terms of service](#terms-of-services)
- - [Feedback](#feedback-:)
+ - [Feedback](#feedback)
  
 ## Screenshots
 <br>**1. Main Screen**<br><br>
