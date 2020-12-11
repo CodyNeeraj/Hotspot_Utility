@@ -1,4 +1,5 @@
 # Hotspot Utility
+![ICON](https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/src/icons/about_side_icon.png?raw=true)<br><br>
 A small but **effective** utility program written by me in **[Java<sup>TM</sup>](https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html)** Especially for  **Microsoft Windows**<sup>**TM**</sup>  !
 
 #### Overview
