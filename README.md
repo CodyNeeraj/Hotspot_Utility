@@ -16,12 +16,28 @@ It will help you in many ways for real world demonstrations like:
  - [Main Features](#main-features)
  - [Usage](#usage-permissions)
  - [Dependancy](#supported-platforms-and-dependancies)
+<<<<<<< Updated upstream
  - [Terms of service](#terms-of-services)
+=======
+ - [Terms of service](#terms-and-services)
+>>>>>>> Stashed changes
  - [Feedback](#feedback)
  
 ## Screenshots
 <br>**1. Main Screen**<br><br>
 ![Screenshot](https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/images/main_screen.png?raw=true "Main Screen")
+<<<<<<< Updated upstream
+=======
+
+<br>**2. Menu bar**<br><br>
+![ScreenshotScreenshot](https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/images/main_screen_menubar.png?raw=true "Menu bar")
+
+<br>**3. Help Screen**<br><br>
+![Screenshot](https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/images/main_screen_help.png?raw=true "Help Screen")
+
+*Other working is in the program itself ;) !!*
+
+>>>>>>> Stashed changes
 
 <br>**2. Menu bar**<br><br>
 ![ScreenshotScreenshot](https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/images/main_screen_menubar.png?raw=true "Menu bar")
@@ -34,7 +50,11 @@ It will help you in many ways for real world demonstrations like:
 
 ## How to
 ### Sharing connection from Windows :
+<<<<<<< Updated upstream
 - **In order to share ethernet connection of your host machine, you *first* need to enable / configure the following steps :-**
+=======
+- **In order to share ethernet connection of your host machine, you first need to enable / configure the following steps :-**
+>>>>>>> Stashed changes
 1. First run the RUN command using WIN+R keyword and then type the following command in the run dialog box
 
 ```bash
@@ -44,6 +64,7 @@ ncpa.cpl
 <br><br>
  
 2. Then Choose your network connection, on which the internet connection is connected already and your want to share and click on that connection's **Properties**.<br><br>
+<<<<<<< Updated upstream
 ![Screenshot](https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/images/network_connections.png?raw=true "Connection's Properties")<br><br>
 
 3. Then Goto the Sharing tab right next to Networking tab and there just Select the option <br> *Allow Other network users to connect through this computer's Internet connection* <br>
@@ -53,6 +74,12 @@ ncpa.cpl
 <br><br>
 
 - If you just need to make a local network i.e for Access Point Purposes then just skip / Ignore **Options 1,2 and 3.** and continue with hotspot's starting from main window in the program
+=======
+![Screenshot](https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/images/network_connections.png?raw=true "Connection's Properties")
+ 
+ 
+- if you just need to make a local network i.e
+>>>>>>> Stashed changes
 
 ## Main Features
  - Starting, Stopping and Resetting of Manual Access Point
@@ -81,6 +108,10 @@ Updating soon !!!
  
  ## Feedback
  Your feedback is important to me so please give a feedback 
+<<<<<<< Updated upstream
  [Here](https://forms.gle/ZkyanznFEqpLrrWf8)
+=======
+ [Here](#https://forms.gle/ZkyanznFEqpLrrWf8)
+>>>>>>> Stashed changes
  
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>D:\source files\NetBeansProjects\WLAN Utility\dist\WLAN_Utility.jar</jar>
+  <outfile>D:\source files\NetBeansProjects\WLAN Utility\dist\Wlan_Utility.exe</outfile>
+  <errTitle>Something Went wrong ! Check your system or contact the developer.</errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon></icon>
+  <jre>
+    <path></path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion>1.7</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+  </jre>
+  <versionInfo>
+    <fileVersion>1.1.0.0</fileVersion>
+    <txtFileVersion>1.1RC</txtFileVersion>
+    <fileDescription>A powerful Utility to use the inbuilt WLAN AP ina simpler way !</fileDescription>
+    <copyright>MIT License</copyright>
+    <productVersion>1.1.0.0</productVersion>
+    <txtProductVersion>1.1RC</txtProductVersion>
+    <productName>HotSpot Utility</productName>
+    <companyName>Open Source</companyName>
+    <internalName>Pegasus</internalName>
+    <originalFilename>Wlan_Utility.exe</originalFilename>
+    <trademarks>Copyright MIT License 2020</trademarks>
+    <language>ENGLISH_US</language>
+  </versionInfo>
+</launch4jConfig>
