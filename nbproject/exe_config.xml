@@ -4,16 +4,16 @@
   <headerType>gui</headerType>
   <jar>D:\source files\NetBeansProjects\WLAN Utility\dist\WLAN_Utility.jar</jar>
   <outfile>D:\source files\NetBeansProjects\WLAN Utility\dist\Wlan_Utility.exe</outfile>
-  <errTitle>Something Went wrong ! Check your system or contact the developer.</errTitle>
+  <errTitle>Please download the JDK from Oracle to run this program !</errTitle>
   <cmdLine></cmdLine>
   <chdir></chdir>
   <priority>normal</priority>
-  <downloadUrl>http://java.com/download</downloadUrl>
-  <supportUrl></supportUrl>
+  <downloadUrl>https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html</downloadUrl>
+  <supportUrl>https://www.github.com/codyneeraj</supportUrl>
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon></icon>
+  <icon>D:\wifi-router.ico</icon>
   <jre>
     <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>
@@ -32,7 +32,7 @@
     <txtProductVersion>1.1RC</txtProductVersion>
     <productName>HotSpot Utility</productName>
     <companyName>Open Source</companyName>
-    <internalName>Pegasus</internalName>
+    <internalName>MAPLE</internalName>
     <originalFilename>Wlan_Utility.exe</originalFilename>
     <trademarks>Copyright MIT License 2020</trademarks>
     <language>ENGLISH_US</language>
