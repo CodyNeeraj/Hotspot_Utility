@@ -8,12 +8,12 @@
   <cmdLine></cmdLine>
   <chdir></chdir>
   <priority>normal</priority>
-  <downloadUrl>https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html</downloadUrl>
-  <supportUrl>https://www.github.com/codyneeraj</supportUrl>
+  <downloadUrl>https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html</downloadUrl>
+  <supportUrl>https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/README.md</supportUrl>
   <stayAlive>false</stayAlive>
   <restartOnCrash>false</restartOnCrash>
   <manifest></manifest>
-  <icon>D:\wifi-router.ico</icon>
+  <icon>D:\source files\NetBeansProjects\WLAN Utility\images\wifi-router.ico</icon>
   <jre>
     <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>

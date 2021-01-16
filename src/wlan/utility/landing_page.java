@@ -623,7 +623,7 @@ public class landing_page extends javax.swing.JFrame
         }
         else
         {
-            pass_field.setEchoChar('*');
+            pass_field.setEchoChar('●');
         }
     }//GEN-LAST:event_showpassActionPerformed
 

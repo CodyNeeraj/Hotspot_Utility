@@ -165,7 +165,7 @@ public class core_funcs
         {
             System.out.println("Browser is opened..");
             //program keeps running smoothly
-            String url = "https://github.com/CodyNeeraj/wlan-hotspot-for-windows";
+            String url = "https://github.com/CodyNeeraj/Hotspot_Utility/blob/master/README.md";
             if (Desktop.isDesktopSupported())
             {
                 Desktop desktop = Desktop.getDesktop();
@@ -362,7 +362,7 @@ public class core_funcs
         {
             System.out.println("Browser is opened.. for codyneeraj site");
             //program keeps running smoothly
-            String url = "https://github.com/CodyNeeraj";
+            String url = "https://github.com/CodyNeeraj/Hotspot_Utility";
             if (Desktop.isDesktopSupported())
             {
                 Desktop desktop = Desktop.getDesktop();
